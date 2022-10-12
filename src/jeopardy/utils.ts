@@ -5,7 +5,7 @@ import {
   GameApiResponse,
   GameData,
   JeopardyQuestion,
-} from "src/jeopardy";
+} from "src/jeopardy/index.d";
 import { CLUEBASE_URL } from "./constants";
 
 export const getRandomQuestion = async (): Promise<JeopardyQuestion> => {
@@ -81,20 +81,3 @@ const fetchGame = async (gameId: number): Promise<GameData> => {
   const gameData: GameData = gameResponse.data[0];
   return gameData;
 };
-
-// const res = JSON.parse((await get(CLUEBASE_URL + "clues/random")).text)
-//   .data[0];
-// if (
-//   !res.clue ||
-//   !res.category ||
-//   res.clue == "null" ||
-//   res.clue.trim() == "" ||
-//   res.clue == "=" ||
-//   res.clue.includes("video clue") ||
-//   res.clue.includes("audio clue") ||
-//   res.clue.includes("seen here") ||
-//   res.response.includes("----") ||
-//   res.response == "="
-// ) {
-//   return getQuestion();
-// }
