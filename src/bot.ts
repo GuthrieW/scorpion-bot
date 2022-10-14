@@ -1,6 +1,6 @@
 import { CacheType, Client, GatewayIntentBits, Interaction } from "discord.js";
-import { handleJeopardyCommand } from "./jeopardy";
-import { startup } from "./jeopardy/_startup";
+import { handleJeopardyCommand } from "./command-groups/jeopardy";
+import { startup } from "./command-groups/jeopardy/_startup";
 
 require("dotenv").config();
 

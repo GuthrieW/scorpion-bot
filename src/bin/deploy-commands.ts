@@ -1,4 +1,4 @@
-import { generateJeopardyCommands } from "../jeopardy/_commands";
+import { generateJeopardyCommands } from "../command-groups/jeopardy/_commands";
 
 const { REST, Routes } = require("discord.js");
 require("dotenv").config();

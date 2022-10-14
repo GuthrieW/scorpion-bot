@@ -53,3 +53,9 @@ export type DiscordChannel = {
   channel_id: string;
   channel_state: 0 | 1;
 };
+
+export type DiscordUser = {
+  id: string;
+  user_id: string;
+  money: number;
+};

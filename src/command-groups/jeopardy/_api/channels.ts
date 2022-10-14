@@ -1,5 +1,5 @@
 import { query } from "src/database";
-import SQL from "sql-template-strings";
+import SQL, { SQLStatement } from "sql-template-strings";
 import { v4 as uuid } from "uuid";
 import { DiscordChannel } from "../index.d";
 
@@ -27,12 +27,11 @@ export const getOrInsertChannel = async (
 };
 
 export const insertChannel = async (channelId: string): Promise<void> => {
-  const insertChannelQuery = SQL`
-    INSERT INTO \`${JEOPARDY_TABLE.CHANNELS.NAME}\`
-    (${JEOPARDY_TABLE.CHANNELS.COLUMNS.ID}, ${
-    JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_ID
-  }, ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_STATE})
-    VALUES(${uuid()}, ${channelId}, 1)
+  const insertChannelQuery: SQLStatement = SQL`
+    INSERT INTO \`discord_channels\`
+      (id, channel_id, channel_state)
+    VALUES
+      (${uuid()}, ${channelId}, 1);
   `;
   await query(insertChannelQuery);
   return;
@@ -41,12 +40,13 @@ export const insertChannel = async (channelId: string): Promise<void> => {
 export const getChannel = async (
   channelId: string
 ): Promise<DiscordChannel | null> => {
-  const getChannelQuery = SQL`
-    SELECT ${JEOPARDY_TABLE.CHANNELS.COLUMNS.ID}, ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_ID}, ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_STATE}
-    FROM ${JEOPARDY_TABLE.CHANNELS.NAME}
-    WHERE ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_ID}=${channelId}
+  const getChannelQuery: SQLStatement = SQL`
+    SELECT id, channel_id, channel_state
+    FROM \`discord_channels\`
+    WHERE channel_id=${channelId}
     LIMIT 1;
   `;
+
   const result: DiscordChannel[] = await query(getChannelQuery);
   if (result.length < 1) {
     return null;
@@ -59,19 +59,19 @@ export const updateChannelState = async (
   channelId: string,
   newState: 0 | 1
 ): Promise<void> => {
-  const updateChannelStateQuery = SQL`
-    UPDATE \`${JEOPARDY_TABLE.CHANNELS.NAME}\`
-    SET ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_STATE}=${newState}
-    WHERE ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_ID}=${channelId};
+  const updateChannelStateQuery: SQLStatement = SQL`
+    UPDATE \`discord_channels\`
+    SET channel_state=${newState}
+    WHERE channel_id=${channelId};
   `;
   await query(updateChannelStateQuery);
   return;
 };
 
 export const resetChannelStates = async (): Promise<void> => {
-  const resetChannelsQuery = SQL`
-    UPDATE \`${JEOPARDY_TABLE.CHANNELS.NAME}\`
-    SET ${JEOPARDY_TABLE.CHANNELS.COLUMNS.CHANNEL_STATE}=0;
+  const resetChannelsQuery: SQLStatement = SQL`
+    UPDATE \`discord_channels\`
+    SET channel_state=0;
   `;
   await query(resetChannelsQuery);
   return;

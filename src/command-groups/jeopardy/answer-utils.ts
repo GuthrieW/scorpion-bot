@@ -10,6 +10,7 @@ import {
 import { compareTwoStrings } from "string-similarity";
 import { JeopardyQuestion } from "./index.d";
 import { Message } from "discord.js";
+import { addUserMoney, subtractUserMoney } from "./_api/users";
 
 export const isQuestionFormat = (userAnswer: string): boolean => {
   const matches = userAnswer
@@ -19,7 +20,7 @@ export const isQuestionFormat = (userAnswer: string): boolean => {
 };
 
 export const formatQuestion = (question: JeopardyQuestion): string => {
-  const questionDate = new Intl.DateTimeFormat("en", {
+  const questionDate: string = new Intl.DateTimeFormat("en", {
     year: "numeric",
     month: "short",
   }).format(new Date(question.airdate));
@@ -29,20 +30,34 @@ export const formatQuestion = (question: JeopardyQuestion): string => {
   }:\n\`\`\`${question.clue}\`\`\``;
 };
 
-export const evaluateAnswer = (
+export const evaluateAnswer = async (
   message: Message<boolean>,
-  answer: string
-): boolean => {
-  if (!isQuestionFormat(message.content)) {
+  answer: string,
+  money: number
+): Promise<boolean> => {
+  const userId: string = message.author.id;
+  const username: string = message.author.username;
+  const content: string = message.content;
+
+  if (!isQuestionFormat(content)) {
     return false;
   }
 
-  const isCorrect = isCorrectAnswer(message.content, answer);
+  const isCorrect: boolean = isCorrectAnswer(content, answer);
+  const newMoneyAmount: number = isCorrect
+    ? await addUserMoney(userId, money)
+    : await subtractUserMoney(userId, money);
+
+  const formattedMoney: string = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumSignificantDigits: 0,
+  }).format(newMoneyAmount);
 
   message.reply(
-    `That is ${isCorrect ? "correct" : "incorrect"}, ${
-      message.author.username
-    }!`
+    `That is ${
+      isCorrect ? "correct" : "incorrect"
+    }, ${username}! Your score is now ${formattedMoney}`
   );
 
   return isCorrect;
