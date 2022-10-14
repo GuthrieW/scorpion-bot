@@ -1,5 +1,6 @@
 import { CacheType, Client, GatewayIntentBits, Interaction } from "discord.js";
 import { handleJeopardyCommand } from "./jeopardy";
+import { startup } from "./jeopardy/_startup";
 
 require("dotenv").config();
 
@@ -11,8 +12,11 @@ const client = new Client({
   ],
 });
 
-client.once("ready", () => {
+client.login(process.env.BOT_TOKEN);
+
+client.once("ready", async () => {
   console.log("Ready!");
+  await startup();
 });
 
 client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
@@ -23,5 +27,3 @@ client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
     await handleJeopardyCommand(interaction);
   }
 });
-
-client.login(process.env.BOT_TOKEN);

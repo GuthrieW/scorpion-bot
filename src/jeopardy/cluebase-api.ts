@@ -6,7 +6,7 @@ import {
   GameData,
   JeopardyQuestion,
 } from "src/jeopardy/index.d";
-import { CLUEBASE_URL } from "./constants";
+import { CLUEBASE_URL } from "./_constants";
 
 export const getRandomQuestion = async (): Promise<JeopardyQuestion> => {
   const randomClue = await fetchRandomClue();
@@ -74,15 +74,4 @@ const sanitizeApiAnswer = (
   const normalizedAnswer = answer.replace(/[^a-zA-Z0-9() ]/g, "").toLowerCase();
 
   return { answer, normalizedAnswer };
-};
-
-export const formatQuestion = (question: JeopardyQuestion): string => {
-  const questionDate = new Intl.DateTimeFormat("en", {
-    year: "numeric",
-    month: "short",
-  }).format(new Date(question.airdate));
-
-  return `(${questionDate}) The category is **${question.category.toLocaleUpperCase()}** for $${
-    question.value
-  }:\n\`\`\`${question.clue}\`\`\``;
 };

@@ -1,13 +1,22 @@
 import { CacheType, ChatInputCommandInteraction, Message } from "discord.js";
-import { QUESTION_TIMEOUT } from "./constants";
-import { isCorrectAnswer, isQuestionFormat } from "./answer-utils";
-import { formatQuestion, getRandomQuestion } from "./jeopardy-api";
+import { evaluateAnswer, formatQuestion } from "./answer-utils";
+import { QUESTION_TIMEOUT } from "./_constants";
+import { getRandomQuestion } from "./cluebase-api";
+import { getOrInsertChannel } from "./_api/channels";
 
 export const handleJeopardyCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
 ) => {
   const subcommand = interaction.options.getSubcommand();
   if (subcommand === "question") {
+    const channelId = interaction.channel?.id as string;
+    const discordChannel = await getOrInsertChannel(channelId);
+
+    // the channel is already in use
+    if (discordChannel?.channel_state === 1) {
+      return;
+    }
+
     const question = await getRandomQuestion();
     const formattedQuestion = formatQuestion(question);
     await interaction.reply(formattedQuestion);
@@ -24,27 +33,14 @@ export const handleJeopardyCommand = async (
         }
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log(error);
+        interaction.followUp(
+          `There was a database error.\nThe correct answer was **${question.answer}**`
+        );
       });
   } else if (subcommand === "help") {
     await interaction.reply(
       "How to use Jeopardy Bot:\nThis is not finished yet"
     );
   }
-};
-
-const evaluateAnswer = (message: Message<boolean>, answer: string): boolean => {
-  if (!isQuestionFormat(message.content)) {
-    return false;
-  }
-
-  const isCorrect = isCorrectAnswer(message.content, answer);
-
-  message.reply(
-    `That is ${isCorrect ? "correct" : "incorrect"}, ${
-      message.author.username
-    }!`
-  );
-
-  return isCorrect;
 };

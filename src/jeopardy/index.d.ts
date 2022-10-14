@@ -42,3 +42,14 @@ export type GameData = {
   score2: number;
   score3: number;
 };
+
+export type ChannelActivity = {
+  channelId: string;
+  isJeopardyActive: boolean;
+};
+
+export type DiscordChannel = {
+  id: string;
+  channel_id: string;
+  channel_state: 0 | 1;
+};
