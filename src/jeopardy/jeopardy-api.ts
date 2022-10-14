@@ -11,7 +11,7 @@ import { CLUEBASE_URL } from "./constants";
 export const getRandomQuestion = async (): Promise<JeopardyQuestion> => {
   const randomClue = await fetchRandomClue();
   const game = await fetchGame(randomClue.game_id);
-  const { answer, normalizedAnswer } = sanitizeAnswer(randomClue);
+  const { answer, normalizedAnswer } = sanitizeApiAnswer(randomClue);
 
   const jeopardyQuestion: JeopardyQuestion = {
     answer,
@@ -23,23 +23,6 @@ export const getRandomQuestion = async (): Promise<JeopardyQuestion> => {
   };
 
   return jeopardyQuestion;
-};
-
-export const formatQuestion = (question: JeopardyQuestion): string => {
-  return `The category is **${question.category.toLocaleUpperCase()}** for $${
-    question.value
-  }:\n\`\`\`${question.clue}\`\`\``;
-};
-
-const sanitizeAnswer = (
-  clue: ClueData
-): { answer: string; normalizedAnswer: string } => {
-  // clean up html elements
-  const answer = clue.response.replace(/<(?:.|\n)*?>/gm, "");
-  // normalize answer for matching
-  const normalizedAnswer = answer.replace(/[^a-zA-Z0-9() ]/g, "").toLowerCase();
-
-  return { answer, normalizedAnswer };
 };
 
 const fetchRandomClue = async (): Promise<ClueData> => {
@@ -80,4 +63,26 @@ const fetchGame = async (gameId: number): Promise<GameData> => {
   ).data;
   const gameData: GameData = gameResponse.data[0];
   return gameData;
+};
+
+const sanitizeApiAnswer = (
+  clue: ClueData
+): { answer: string; normalizedAnswer: string } => {
+  // clean up html elements
+  const answer = clue.response.replace(/<(?:.|\n)*?>/gm, "");
+  // normalize answer for matching
+  const normalizedAnswer = answer.replace(/[^a-zA-Z0-9() ]/g, "").toLowerCase();
+
+  return { answer, normalizedAnswer };
+};
+
+export const formatQuestion = (question: JeopardyQuestion): string => {
+  const questionDate = new Intl.DateTimeFormat("en", {
+    year: "numeric",
+    month: "short",
+  }).format(new Date(question.airdate));
+
+  return `(${questionDate}) The category is **${question.category.toLocaleUpperCase()}** for $${
+    question.value
+  }:\n\`\`\`${question.clue}\`\`\``;
 };
