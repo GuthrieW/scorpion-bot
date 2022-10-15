@@ -40,8 +40,6 @@ export const handleJeopardyCommand = async (
         );
       });
   } else if (subcommand === "help") {
-    await interaction.reply(
-      "How to use Jeopardy Bot:\nThis is not finished yet"
-    );
+    await interaction.reply("Not implemented");
   }
 };

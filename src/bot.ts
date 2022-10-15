@@ -1,5 +1,6 @@
 import { CacheType, Client, GatewayIntentBits, Interaction } from "discord.js";
 import { handleDankCommand } from "./command-groups/dank";
+import { handleHistoryCommand } from "./command-groups/history";
 import { handleJeopardyCommand } from "./command-groups/jeopardy";
 import { jeopardyStartup } from "./command-groups/jeopardy/_startup";
 
@@ -26,8 +27,9 @@ client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
   const { commandName } = interaction;
   if (commandName === "jeopardy") {
     await handleJeopardyCommand(interaction);
-  }
-  if (commandName === "dank") {
+  } else if (commandName === "dank") {
     await handleDankCommand(interaction);
+  } else if (commandName === "history") {
+    await handleHistoryCommand(interaction);
   }
 });

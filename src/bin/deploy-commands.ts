@@ -1,5 +1,6 @@
 import { generateDankCommands } from "../command-groups/dank/_commands";
 import { generateJeopardyCommands } from "../command-groups/jeopardy/_commands";
+import { generateHistoryCommands } from "../command-groups/history/_commands";
 
 const { REST, Routes } = require("discord.js");
 require("dotenv").config();
@@ -12,7 +13,11 @@ deployGuildCommands(rest, commands);
 
 function generateCommands(): any[] {
   const commands = [];
-  commands.push(...generateJeopardyCommands(), ...generateDankCommands());
+  commands.push(
+    ...generateDankCommands(),
+    ...generateHistoryCommands()
+    // ...generateJeopardyCommands()
+  );
   return commands.map((command) => command.toJSON());
 }
 
