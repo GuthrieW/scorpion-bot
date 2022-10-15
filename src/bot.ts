@@ -1,6 +1,7 @@
 import { CacheType, Client, GatewayIntentBits, Interaction } from "discord.js";
+import { handleDankCommand } from "./command-groups/dank";
 import { handleJeopardyCommand } from "./command-groups/jeopardy";
-import { startup } from "./command-groups/jeopardy/_startup";
+import { jeopardyStartup } from "./command-groups/jeopardy/_startup";
 
 require("dotenv").config();
 
@@ -16,7 +17,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.once("ready", async () => {
   console.log("Ready!");
-  await startup();
+  await jeopardyStartup();
 });
 
 client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
@@ -25,5 +26,8 @@ client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
   const { commandName } = interaction;
   if (commandName === "jeopardy") {
     await handleJeopardyCommand(interaction);
+  }
+  if (commandName === "dank") {
+    await handleDankCommand(interaction);
   }
 });

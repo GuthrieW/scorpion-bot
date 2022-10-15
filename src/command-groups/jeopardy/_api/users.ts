@@ -1,7 +1,18 @@
-import { query } from "src/database";
+import { query } from "../../../../src/database";
 import SQL, { SQLStatement } from "sql-template-strings";
 import { v4 as uuid } from "uuid";
 import { DiscordUser } from "../index.d";
+
+const USERS_TABLE = {
+  CHANNELS: {
+    NAME: "discord_users",
+    COLUMNS: {
+      ID: "id", // string - generated uuid
+      USER_ID: "user_id", // string - comes from discord
+      MONEY: "money", // integer - the amount of money someone has, defaults to 0
+    },
+  },
+};
 
 export const getOrInsertUser = async (userId: string): Promise<DiscordUser> => {
   let user = await getUser(userId);
@@ -60,8 +71,7 @@ export const subtractUserMoney = async (
   moneyToSubtract: number
 ): Promise<number> => {
   const user: DiscordUser = await getOrInsertUser(userId);
-  const newMoneyAmount: number =
-    user.money - moneyToSubtract >= 0 ? user.money - moneyToSubtract : 0;
+  const newMoneyAmount: number = user.money - moneyToSubtract;
   const subtractMoneyQuery: SQLStatement = SQL`
   UPDATE \`discord_users\`
   SET money=${newMoneyAmount}

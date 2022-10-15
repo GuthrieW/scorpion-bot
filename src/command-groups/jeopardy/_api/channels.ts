@@ -1,4 +1,4 @@
-import { query } from "src/database";
+import { query } from "../../../../src/database";
 import SQL, { SQLStatement } from "sql-template-strings";
 import { v4 as uuid } from "uuid";
 import { DiscordChannel } from "../index.d";

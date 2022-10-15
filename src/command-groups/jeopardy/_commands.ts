@@ -1,5 +1,6 @@
+import { SlashCommandBuilder } from "discord.js";
+
 export const generateJeopardyCommands = (): any[] => {
-  const { SlashCommandBuilder } = require("discord.js");
   return [
     new SlashCommandBuilder()
       .setName("jeopardy")

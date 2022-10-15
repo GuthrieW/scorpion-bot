@@ -1,3 +1,4 @@
+import { generateDankCommands } from "../command-groups/dank/_commands";
 import { generateJeopardyCommands } from "../command-groups/jeopardy/_commands";
 
 const { REST, Routes } = require("discord.js");
@@ -11,7 +12,7 @@ deployGuildCommands(rest, commands);
 
 function generateCommands(): any[] {
   const commands = [];
-  commands.push(...generateJeopardyCommands());
+  commands.push(...generateJeopardyCommands(), ...generateDankCommands());
   return commands.map((command) => command.toJSON());
 }
 

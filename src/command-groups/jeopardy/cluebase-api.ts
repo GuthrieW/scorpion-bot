@@ -5,7 +5,7 @@ import {
   GameApiResponse,
   GameData,
   JeopardyQuestion,
-} from "src/command-groups/jeopardy/index.d";
+} from "../../../src/command-groups/jeopardy/index.d";
 import { CLUEBASE_URL } from "./_constants";
 
 export const getRandomQuestion = async (): Promise<JeopardyQuestion> => {
