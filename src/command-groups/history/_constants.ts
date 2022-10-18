@@ -1,0 +1,130 @@
+import { TeamNamingData } from "./index.d";
+
+export const Teams: TeamNamingData[] = [
+  {
+    full_name: "Berkeley Bulldogs",
+    city_name: "Berkeley",
+    team_name: "Bulldogs",
+    abbreviation: "BRK",
+  },
+  {
+    full_name: "Boise Raptors",
+    city_name: "Boise",
+    team_name: "Raptors",
+    abbreviation: "BOI",
+  },
+  {
+    full_name: "Buffalo Surge",
+    city_name: "Buffalo",
+    team_name: "Surge",
+    abbreviation: "BUF",
+  },
+  {
+    full_name: "Cancun Toros",
+    city_name: "Cancun",
+    team_name: "Toros",
+    abbreviation: "CUN",
+  },
+  {
+    full_name: "Death Valley Scorpions",
+    city_name: "Death Valley",
+    team_name: "Scorpions",
+    abbreviation: "DVS",
+  },
+  {
+    full_name: "Detroit Demons",
+    city_name: "Detroit",
+    team_name: "Demons",
+    abbreviation: "DET",
+  },
+  {
+    full_name: "Florida Space Rangers",
+    city_name: "Florida",
+    team_name: "Space Rangers",
+    abbreviation: "FL",
+  },
+  {
+    full_name: "Indianapolis Apex",
+    city_name: "Indianapolis",
+    team_name: "Apex",
+    abbreviation: "IND",
+  },
+  {
+    full_name: "Kashima Foxes",
+    city_name: "Kashima",
+    team_name: "Foxes",
+    abbreviation: "KSH",
+  },
+  {
+    full_name: "Lunar Base Space Rangers",
+    city_name: "Lunar Base",
+    team_name: "Space Rangers",
+    abbreviation: "LUN",
+  },
+  {
+    full_name: "Maui Makos",
+    city_name: "Maui",
+    team_name: "Makos",
+    abbreviation: "MAU",
+  },
+  {
+    full_name: "Nashville Stars",
+    city_name: "Nashville",
+    team_name: "Stars",
+    abbreviation: "NSH",
+  },
+  {
+    full_name: "New Orleans Rougarous",
+    city_name: "New Orleans",
+    team_name: "Rougarous",
+    abbreviation: "NOLA",
+  },
+  {
+    full_name: "New York Voyagers",
+    city_name: "New York",
+    team_name: "Voyagers",
+    abbreviation: "NYV",
+  },
+  {
+    full_name: "Outer Banks Aviators",
+    city_name: "Outer Banks",
+    team_name: "Aviators",
+    abbreviation: "OBX",
+  },
+  {
+    full_name: "Providence Crabs",
+    city_name: "Providence",
+    team_name: "Crabs",
+    abbreviation: "PRO",
+  },
+  {
+    full_name: "San Antonio Sloths",
+    city_name: "San Antonio",
+    team_name: "Sloths",
+    abbreviation: "SAS",
+  },
+  {
+    full_name: "Sarasota Supernovas",
+    city_name: "Sarasota",
+    team_name: "Supernovas",
+    abbreviation: "SAR",
+  },
+  {
+    full_name: "Seattle Sea Serpents",
+    city_name: "Seattle",
+    team_name: "Sea Serpents",
+    abbreviation: "SEA",
+  },
+  {
+    full_name: "Utah Railroaders",
+    city_name: "Utah",
+    team_name: "Railroaders",
+    abbreviation: "UTA",
+  },
+  {
+    full_name: "Vancouver Vandals",
+    city_name: "Vancouver",
+    team_name: "Vandals",
+    abbreviation: "VAN",
+  },
+];
