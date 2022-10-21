@@ -1,6 +1,8 @@
 import { CacheType, Client, GatewayIntentBits, Interaction } from "discord.js";
 import { handleDankCommand } from "./command-groups/dank";
+import { dankStartup } from "./command-groups/dank/_startup";
 import { handleHistoryCommand } from "./command-groups/history";
+import { historyStartup } from "./command-groups/history/_startup";
 import { handleJeopardyCommand } from "./command-groups/jeopardy";
 import { jeopardyStartup } from "./command-groups/jeopardy/_startup";
 
@@ -17,8 +19,10 @@ const client = new Client({
 client.login(process.env.BOT_TOKEN);
 
 client.once("ready", async () => {
-  console.log("Ready!");
+  await dankStartup();
+  await historyStartup();
   await jeopardyStartup();
+  console.log("Ready!");
 });
 
 client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
