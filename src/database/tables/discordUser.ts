@@ -20,6 +20,7 @@ const findByDiscordIdOrCreate = async (
   discordId: string
 ): Promise<discord_user> => {
   const existingUser = await findByDiscordId(discordId);
+  console.log("existingUser", JSON.stringify(existingUser));
 
   if (existingUser.discord_user) {
     return existingUser.discord_user;
@@ -27,6 +28,7 @@ const findByDiscordIdOrCreate = async (
 
   await create(discordId);
   const createdUser = await findByDiscordId(discordId);
+  console.log("createdUser", JSON.stringify(createdUser));
   return createdUser.discord_user as discord_user;
 };
 
