@@ -1,6 +1,4 @@
-import SQL from "sql-template-strings";
 import { HistoricalMomentType, historical_moment } from "src/database/index.d";
-import { query } from "../index";
 import { HistoricalMoment } from "src/database/tables/historicalMoment";
 import { PbeTeam } from "src/database/tables/pbeTeam";
 

@@ -15,8 +15,8 @@ function generateCommands(): any[] {
   const commands = [];
   commands.push(
     ...generateDankCommands(),
-    ...generateHistoryCommands()
-    // ...generateJeopardyCommands()
+    ...generateHistoryCommands(),
+    ...generateJeopardyCommands()
   );
   return commands.map((command) => command.toJSON());
 }

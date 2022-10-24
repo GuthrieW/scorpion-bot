@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CLUEBASE_URL } from "./_constants";
 
-export type JeopardyQuestion = {
+type JeopardyQuestion = {
   answer: string;
   normalizedAnswer: string;
   clue: string;
@@ -10,12 +10,12 @@ export type JeopardyQuestion = {
   airdate: string;
 };
 
-export type ClueApiResponse = {
+type ClueApiResponse = {
   status: "success" | "failure";
   data: ClueData[];
 };
 
-export type ClueData = {
+type ClueData = {
   id: number;
   game_id: number;
   value: number;
@@ -26,12 +26,12 @@ export type ClueData = {
   response: string;
 };
 
-export type GameApiResponse = {
+type GameApiResponse = {
   status: "success" | "failure";
   data: GameData[];
 };
 
-export type GameData = {
+type GameData = {
   id: number;
   episode_num: number;
   season_id: number;
