@@ -2,7 +2,7 @@ import { CacheType, ChatInputCommandInteraction, Message } from "discord.js";
 import { evaluateAnswer, formatQuestion } from "./answer-utils";
 import { QUESTION_TIMEOUT } from "./_constants";
 import { getRandomQuestion } from "./cluebase-api";
-import { getOrInsertChannel } from "./_api/channels";
+import { getOrInsertChannel } from "../../database/api/channels";
 import { DiscordChannel, JeopardyQuestion } from "./index.d";
 
 export const handleJeopardyCommand = async (
