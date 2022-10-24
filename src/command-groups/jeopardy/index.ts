@@ -3,8 +3,8 @@ import { evaluateAnswer, formatQuestion } from "./answer-utils";
 import { QUESTION_TIMEOUT } from "./_constants";
 import { getRandomQuestion } from "./cluebase-api";
 import { JeopardyQuestion } from "./index.d";
-import { discord_channel } from "src/database/index.d";
-import { DiscordChannel } from "src/database/tables/discordChannel";
+import { discord_channel } from "../../../src/database/index.d";
+import { DiscordChannel } from "../../../src/database/tables/discordChannel";
 
 export const handleJeopardyCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>

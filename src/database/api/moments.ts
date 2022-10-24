@@ -1,6 +1,6 @@
-import { HistoricalMomentType, historical_moment } from "src/database/index.d";
-import { HistoricalMoment } from "src/database/tables/historicalMoment";
-import { PbeTeam } from "src/database/tables/pbeTeam";
+import { HistoricalMomentType, historical_moment } from "../index.d";
+import { HistoricalMoment } from "../tables/historicalMoment";
+import { PbeTeam } from "../tables/pbeTeam";
 
 type NewMoment = {
   type?: HistoricalMomentType;

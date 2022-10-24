@@ -10,7 +10,7 @@ import {
 import { compareTwoStrings } from "string-similarity";
 import { JeopardyQuestion } from "./index.d";
 import { Message } from "discord.js";
-import { addUserMoney, subtractUserMoney } from "src/database/api/jeopardy";
+import { addUserMoney, subtractUserMoney } from "../../database/api/jeopardy";
 
 export const isQuestionFormat = (userAnswer: string): boolean => {
   const matches = userAnswer
