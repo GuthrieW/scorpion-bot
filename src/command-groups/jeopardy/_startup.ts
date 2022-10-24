@@ -1,5 +1,5 @@
-import { resetChannelStates } from "../../database/api/channels";
+import { resetChannelStates } from "../../database/tables/discordChannel";
 
 export const jeopardyStartup = async () => {
-  // await resetChannelStates();
+  await resetChannelStates();
 };
