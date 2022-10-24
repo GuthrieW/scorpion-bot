@@ -2,8 +2,9 @@ import { CacheType, ChatInputCommandInteraction, Message } from "discord.js";
 import { evaluateAnswer, formatQuestion } from "./answer-utils";
 import { QUESTION_TIMEOUT } from "./_constants";
 import { getRandomQuestion } from "./cluebase-api";
-import { getOrInsertChannel } from "../../database/api/channels";
-import { DiscordChannel, JeopardyQuestion } from "./index.d";
+import { JeopardyQuestion } from "./index.d";
+import { discord_channel } from "src/database/index.d";
+import { DiscordChannel } from "src/database/tables/discordChannel";
 
 export const handleJeopardyCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
@@ -11,12 +12,15 @@ export const handleJeopardyCommand = async (
   const subcommand = interaction.options.getSubcommand();
   if (subcommand === "question") {
     const channelId: string = interaction.channel?.id as string;
-    const discordChannel: DiscordChannel = await getOrInsertChannel(channelId);
+    const discordChannel: discord_channel =
+      await DiscordChannel.findByIdOrCreate(channelId);
 
     // the channel is already in use
     if (discordChannel?.channel_state === 1) {
       return;
     }
+
+    await DiscordChannel.updateChannelState(channelId, 1);
 
     const question: JeopardyQuestion = await getRandomQuestion();
     const formattedQuestion: string = formatQuestion(question);
@@ -38,6 +42,9 @@ export const handleJeopardyCommand = async (
         interaction.followUp(
           `There was a database error.\nThe correct answer was **${question.answer}**`
         );
+      })
+      .finally(async () => {
+        await DiscordChannel.updateChannelState(channelId, 0);
       });
   } else if (subcommand === "help") {
     await interaction.reply("Not implemented");

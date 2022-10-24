@@ -1,29 +1,32 @@
-// export const addUserMoney = async (
-//   userId: string,
-//   moneyToAdd: number
-// ): Promise<number> => {
-//   const user: discord_user = await getOrInsertUser(userId);
-//   const newMoneyAmount: number = user.money + moneyToAdd;
-//   const addMoneyQuery: SQLStatement = SQL`
-//     UPDATE \`discord_users\`
-//     SET money=${newMoneyAmount}
-//     WHERE user_id=${userId};
-//   `;
-//   await query(addMoneyQuery);
-//   return newMoneyAmount;
-// };
+import { jeopardy_account } from "../index.d";
+import { JeopardyAccount } from "../tables/jeopardyAccount";
 
-// export const subtractUserMoney = async (
-//   userId: string,
-//   moneyToSubtract: number
-// ): Promise<number> => {
-//   const user: discord_user = await getOrInsertUser(userId);
-//   const newMoneyAmount: number = user.money - moneyToSubtract;
-//   const subtractMoneyQuery: SQLStatement = SQL`
-//   UPDATE \`discord_users\`
-//   SET money=${newMoneyAmount}
-//   WHERE user_id=${userId};
-// `;
-//   await query(subtractMoneyQuery);
-//   return newMoneyAmount;
-// };
+export const addUserMoney = async (
+  discordId: string,
+  moneyToAdd: number
+): Promise<number> => {
+  const jeopardyAccount: jeopardy_account =
+    await JeopardyAccount.findByDiscordIdOrCreate(discordId);
+
+  const { money } = await JeopardyAccount.updateCorrectAnswer(
+    jeopardyAccount?.id as string,
+    moneyToAdd
+  );
+
+  return money;
+};
+
+export const subtractUserMoney = async (
+  discordId: string,
+  moneyToSubtract: number
+): Promise<number> => {
+  const jeopardyAccount: jeopardy_account =
+    await JeopardyAccount.findByDiscordIdOrCreate(discordId);
+
+  const { money } = await JeopardyAccount.updateWrongAnswer(
+    jeopardyAccount?.id as string,
+    moneyToSubtract
+  );
+
+  return money;
+};

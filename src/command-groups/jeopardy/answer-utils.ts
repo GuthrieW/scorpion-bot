@@ -10,7 +10,7 @@ import {
 import { compareTwoStrings } from "string-similarity";
 import { JeopardyQuestion } from "./index.d";
 import { Message } from "discord.js";
-import { addUserMoney, subtractUserMoney } from "./_api/users";
+import { addUserMoney, subtractUserMoney } from "src/database/api/jeopardy";
 
 export const isQuestionFormat = (userAnswer: string): boolean => {
   const matches = userAnswer
@@ -35,7 +35,7 @@ export const evaluateAnswer = async (
   answer: string,
   money: number
 ): Promise<boolean> => {
-  const userId: string = message.author.id;
+  const discordId: string = message.author.id;
   const username: string = message.author.username;
   const content: string = message.content;
 
@@ -45,8 +45,8 @@ export const evaluateAnswer = async (
 
   const isCorrect: boolean = isCorrectAnswer(content, answer);
   const newMoneyAmount: number = isCorrect
-    ? await addUserMoney(userId, money)
-    : await subtractUserMoney(userId, money);
+    ? await addUserMoney(discordId, money)
+    : await subtractUserMoney(discordId, money);
 
   const formattedMoney: string = new Intl.NumberFormat("en-US", {
     style: "currency",

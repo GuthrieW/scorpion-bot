@@ -1,49 +1,51 @@
-CREATE TABLE discord_channel 
+CREATE TABLE `discord_channel` 
 (
-    id VARCHAR(36) NOT NULL,
-    channel_id VARCHAR() NOT NULL,
-    channel_state TINYINT(1) NOT NULL,
-    creation_date DATE,
-    CONSTRAINT discord_channel_pk PRIMARY KEY (id, channel_id)
+    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `channel_id` VARCHAR(18) NOT NULL,
+    `channel_state` TINYINT(1) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE discord_user
+CREATE TABLE `discord_user`
 (
-    id VARCHAR(36) NOT NULL,
-    discord_id VARCHAR() NOT NULL,
-    creation_date DATE,
-    CONSTRAINT discord_user_pk PRIMARY KEY (id, discord_id)
+    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `discord_id` VARCHAR(18) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE historical_moment
+CREATE TABLE `historical_moment`
 (
-    id VARCHAR(36) NOT NULL,
+    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `type` VARCHAR(100) NOT NULL,
     `name` VARCHAR(200) NOT NULL,
-    moment_team_id VARCHAR(36) NOT NULL,
-    against_team_id VARCHAR(36) NOT NULL,
-    player_name VARCHAR(100) NOT NULL,
-    clip_link VARCHAR(200) NOT NULL,
-    game_index_link VARCHAR(200) NOT NULL,
-    CONSTRAINT historical_moment_pk PRIMARY KEY (id)
+    `moment_team_id` VARCHAR(36) NOT NULL,
+    `against_team_id` VARCHAR(36) NOT NULL,
+    `player_name` VARCHAR(100),
+    `clip_link` VARCHAR(200) NOT NULL,
+    `game_index_link` VARCHAR(200) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE jeopardy_account
+CREATE TABLE `jeopardy_account`
 (
-    id VARCHAR(36) NOT NULL,
-    `user_id` VARCHAR(36) NOT NULL,
-    discord_id VARCHAR(36) NOT NULL,
-    correct_answers INT(11) NOT NULL,
-    wrong_answers INT(11) NOT NULL,
+    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `discord_id` VARCHAR(18) NOT NULL,
+    `correct_answers` INT(11) NOT NULL,
+    `wrong_answers` INT(11) NOT NULL,
     `money` INT(11) NOT NULL,
-    CONSTRAINT jeopardy_account_pk PRIMARY KEY (id)
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE pbe_team
+CREATE TABLE `pbe_team`
 (
-    id VARCHAR(36) NOT NULL,
-    city_name VARCHAR(100) NOT NULL,
-    team_name VARCHAR(100) NOT NULL,
-    abbreviation VARCHAR(5) NOT NULL,
-    CONSTRAINT pbe_team_pk PRIMARY KEY (id)
+    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `city_name` VARCHAR(100) NOT NULL,
+    `team_name` VARCHAR(100) NOT NULL,
+    `abbreviation` VARCHAR(5) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );

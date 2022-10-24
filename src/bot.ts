@@ -5,6 +5,8 @@ import { handleHistoryCommand } from "./command-groups/history";
 import { historyStartup } from "./command-groups/history/_startup";
 import { handleJeopardyCommand } from "./command-groups/jeopardy";
 import { jeopardyStartup } from "./command-groups/jeopardy/_startup";
+import { discord_user } from "./database/index.d";
+import { DiscordUser } from "./database/tables/discordUser";
 
 require("dotenv").config();
 
@@ -27,6 +29,11 @@ client.once("ready", async () => {
 
 client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
   if (!interaction.isChatInputCommand()) return;
+
+  const discord_user: discord_user = await DiscordUser.findByDiscordIdOrCreate(
+    interaction.user.id
+  );
+  console.log("Message from: ", JSON.stringify(discord_user));
 
   const { commandName } = interaction;
   if (commandName === "jeopardy") {

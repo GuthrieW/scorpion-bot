@@ -17,8 +17,7 @@
     "dotenv": "^16.0.3",
     "serverless-mysql": "^1.5.4",
     "sql-template-strings": "^2.2.2",
-    "string-similarity": "^4.0.4",
-    "uuid": "^9.0.0"
+    "string-similarity": "^4.0.4"
   },
   "devDependencies": {
     "@types/node": "^18.8.4",

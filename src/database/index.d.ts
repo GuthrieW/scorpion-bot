@@ -32,7 +32,6 @@ export type discord_user = {
 
 export type jeopardy_account = {
   id?: string;
-  user_id?: string;
   discord_id?: string;
   correct_answers?: number;
   wrong_answers?: number;

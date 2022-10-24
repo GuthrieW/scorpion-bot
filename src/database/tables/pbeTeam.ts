@@ -1,22 +1,20 @@
 import SQL from "sql-template-strings";
 import { query } from "..";
 import { pbe_team } from "../index.d";
-import { v4 as uuid } from "uuid";
 
 const create = async (newTeam: pbe_team): Promise<pbe_team> => {
   const { city_name, team_name, abbreviation } = newTeam;
-  const id = uuid();
   const createTeamQuery = SQL`
     INSERT INTO \`pbe_team\`
       (id, city_name, team_name, abbreviation)
     VALUES
-      (${id}, ${city_name}, ${team_name}, ${abbreviation});
+      (${city_name}, ${team_name}, ${abbreviation})
+    RETURNING id, city_name, team_name, abbreviation;
   `;
   const result = await query(createTeamQuery);
 
   return {
     ...newTeam,
-    id,
   };
 };
 

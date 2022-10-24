@@ -1,7 +1,6 @@
 import SQL from "sql-template-strings";
 import { query } from "..";
 import { historical_moment } from "../index.d";
-import { v4 as uuid } from "uuid";
 
 const create = async (
   newMoment: historical_moment
@@ -16,19 +15,17 @@ const create = async (
     game_index_link,
   } = newMoment;
 
-  const id = uuid();
   const createMomentQuery = SQL`
     INSERT INTO \`historical_moment\`
-      (id, type, name, moment_team_id, against_team_id, player_name, clip_link, game_index_link)
+      (type, name, moment_team_id, against_team_id, player_name, clip_link, game_index_link)
     VALUES
-      (${id}, ${type}, ${name}, ${moment_team_id}, ${against_team_id}, ${player_name}, ${clip_link}, ${game_index_link});
+      (${type}, ${name}, ${moment_team_id}, ${against_team_id}, ${player_name}, ${clip_link}, ${game_index_link});
   `;
 
   const result = await query(createMomentQuery);
 
   return {
     ...newMoment,
-    id,
   };
 };
 

@@ -1,20 +1,17 @@
 import SQL from "sql-template-strings";
 import { query } from "..";
 import { discord_user } from "../index.d";
-import { v4 as uuid } from "uuid";
 
 const create = async (discordId: string): Promise<discord_user> => {
-  const id = uuid();
   const createTeamQuery = SQL`
     INSERT INTO \`discord_user\`
-      (id, discord_id)
+      (discord_id)
     VALUES
-      (${id}, ${discordId});
+      (${discordId});
   `;
 
   const result = await query(createTeamQuery);
   return {
-    id,
     discord_id: discordId,
   };
 };
@@ -34,12 +31,12 @@ const findByDiscordIdOrCreate = async (
 };
 
 const findById = async (
-  userId: string
+  id: string
 ): Promise<{ discord_user: discord_user | null; error: string | null }> => {
   const getDiscordUserQuery = SQL`
     SELECT *
     FROM \`discord_user\`
-    WHERE id=${userId};
+    WHERE id=${id};
   `;
 
   const result: discord_user[] = await query(getDiscordUserQuery);
@@ -47,7 +44,7 @@ const findById = async (
   if (result.length < 1) {
     return {
       discord_user: null,
-      error: `Could not get user with id: ${userId}`,
+      error: `Could not get user with id: ${id}`,
     };
   }
 

@@ -1,19 +1,16 @@
 import SQL, { SQLStatement } from "sql-template-strings";
 import { query } from "..";
 import { discord_channel } from "../index.d";
-import { v4 as uuid } from "uuid";
 
 const create = async (channelId: string): Promise<discord_channel> => {
-  const id = uuid();
   const createAccountQuery: SQLStatement = SQL`
       INSERT INTO \`discord_channel\`
-        (id, channel_id, channel_state)
+        (channel_id, channel_state)
       VALUES
-        (${id}, ${channelId}, 1)
+        (${channelId}, 1)
     `;
 
   return {
-    id,
     channel_id: channelId,
     channel_state: 1,
   };
