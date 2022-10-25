@@ -21,11 +21,11 @@ const config =
 console.log("config", config);
 
 const databaseConnection = mysql({ config });
+console.log("databaseConnection", databaseConnection);
 
 export const query = async (queryString: SQLStatement): Promise<any> => {
   try {
-    const results = await databaseConnection.query(queryString.sql);
-    return results;
+    return await databaseConnection.query(queryString.sql);
   } catch (error) {
     return { error };
   } finally {
