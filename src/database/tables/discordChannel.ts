@@ -63,7 +63,8 @@ export const resetChannelStates = async (): Promise<void> => {
     UPDATE \`discord_channels\`
     SET channel_state=0;
   `;
-  await query(resetChannelsQuery);
+  const result = await query(resetChannelsQuery);
+  console.log("result", result);
   return;
 };
 
