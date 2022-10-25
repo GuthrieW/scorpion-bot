@@ -9,7 +9,8 @@
   "scripts": {
     "start": "ts-node src/bot.ts",
     "deploy-commands": "ts-node src/bin/deploy-commands.ts",
-    "rebuild": "yarn deploy-commands && yarn start"
+    "rebuild": "yarn deploy-commands && yarn start",
+    "test-database": "ts-node src/bin/test-database.ts"
   },
   "dependencies": {
     "axios": "^1.1.2",
