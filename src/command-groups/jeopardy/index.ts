@@ -30,6 +30,7 @@ export const handleJeopardyCommand = async (
       ?.awaitMessages({
         filter: (message: Message<boolean>) =>
           evaluateAnswer(message, question.answer, question.value),
+        max: 1,
         time: QUESTION_TIMEOUT,
       })
       .then((collected) => {
