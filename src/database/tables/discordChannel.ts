@@ -4,11 +4,11 @@ import { discord_channel } from "../index.d";
 
 const create = async (channelId: string): Promise<discord_channel> => {
   const createChannelQuery: SQLStatement = SQL`
-      INSERT INTO \`discord_channel\`
-        (channel_id, channel_state)
-      VALUES
-        (${channelId}, 1)
-    `;
+    INSERT INTO \`discord_channel\`
+      (channel_id, channel_state)
+    VALUES
+      (${channelId}, 1)
+  `;
 
   const result: discord_channel[] = await query(createChannelQuery);
 
@@ -35,7 +35,7 @@ const findByChannelId = async (
   if (result.length < 1) {
     return {
       discord_channel: null,
-      error: `Could not get jeopardy account with id: ${channelId}`,
+      error: `Could not get discord channel with id: ${channelId}`,
     };
   }
 
@@ -55,7 +55,8 @@ const findByChannelIdOrCreate = async (
     return existingChannel.discord_channel;
   }
 
-  await create(channelId);
+  const newChannel = await create(channelId);
+  console.log("newChannel", newChannel);
   const { discord_channel: createdChannel } = await findByChannelId(channelId);
 
   console.log("createdChannel", createdChannel);
