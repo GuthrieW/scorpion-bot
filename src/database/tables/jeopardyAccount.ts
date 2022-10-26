@@ -112,7 +112,7 @@ const updateCorrectAnswer = async (
   `;
 
   const result: jeopardy_account[] = await query(updateCorrectAnswerQuery);
-  console.log("result correct", result);
+  // console.log("result correct", result);
   return {
     discord_id: result[0].discord_id as string,
     money: result[0].money as number,
@@ -132,7 +132,7 @@ const updateWrongAnswer = async (
   `;
 
   const result: jeopardy_account[] = await query(updateWrongAnswerQuery);
-  console.log("result wrong", result);
+  // console.log("result wrong", result);
   return {
     discord_id: result[0].discord_id as string,
     money: result[0].money as number,
