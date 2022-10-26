@@ -50,16 +50,13 @@ const findByChannelIdOrCreate = async (
 ): Promise<discord_channel> => {
   const existingChannel = await findByChannelId(channelId);
 
-  console.log("existingChannel", existingChannel);
   if (existingChannel.discord_channel) {
     return existingChannel.discord_channel;
   }
 
   const newChannel = await create(channelId);
-  console.log("newChannel", newChannel);
   const { discord_channel: createdChannel } = await findByChannelId(channelId);
 
-  console.log("createdChannel", createdChannel);
   return createdChannel as discord_channel;
 };
 
@@ -69,7 +66,6 @@ export const resetChannelStates = async (): Promise<void> => {
     SET channel_state=0;
   `;
   const result = await query(resetChannelsQuery);
-  console.log("result", result);
   return;
 };
 

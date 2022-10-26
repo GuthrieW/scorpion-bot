@@ -34,12 +34,16 @@ client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
     interaction.user.id
   );
 
-  const { commandName } = interaction;
-  if (commandName === "jeopardy") {
-    await handleJeopardyCommand(interaction);
-  } else if (commandName === "dank") {
-    await handleDankCommand(interaction);
-  } else if (commandName === "history") {
-    await handleHistoryCommand(interaction);
+  try {
+    const { commandName } = interaction;
+    if (commandName === "jeopardy") {
+      await handleJeopardyCommand(interaction);
+    } else if (commandName === "dank") {
+      await handleDankCommand(interaction);
+    } else if (commandName === "history") {
+      await handleHistoryCommand(interaction);
+    }
+  } catch (error) {
+    console.log("severe error", error);
   }
 });

@@ -30,7 +30,6 @@ const findByDiscordIdOrCreate = async (
   discordId: string
 ): Promise<jeopardy_account> => {
   const existingAccount = await findByDiscordId(discordId);
-  console.log("existingAccount", existingAccount);
   if (existingAccount.jeopardy_account) {
     return existingAccount.jeopardy_account;
   }
@@ -40,7 +39,6 @@ const findByDiscordIdOrCreate = async (
   });
 
   const { jeopardy_account: createdUser } = await findByDiscordId(discordId);
-  console.log("createdUser", createdUser);
 
   return createdUser as jeopardy_account;
 };
