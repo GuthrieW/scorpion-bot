@@ -78,7 +78,8 @@ export const updateChannelState = async (
     SET channel_state=${newState}
     WHERE channel_id=${channelId};
   `;
-  await query(updateChannelStateQuery);
+  const result = await query(updateChannelStateQuery);
+  console.log("channel state update result", result);
   return;
 };
 

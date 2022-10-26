@@ -35,16 +35,17 @@ export const handleJeopardyCommand = async (
       })
       .then((collected) => {
         if (collected.size === 0) {
-          interaction.followUp(`The correct answer was **${question.answer}**`);
+          interaction.reply(`The correct answer was **${question.answer}**`);
         }
       })
       .catch((error) => {
         console.log(error);
-        interaction.followUp(
+        interaction.reply(
           `There was a database error.\nThe correct answer was **${question.answer}**`
         );
       })
       .finally(async () => {
+        console.log("channel state set to 0");
         await DiscordChannel.updateChannelState(channelId, 0);
       });
   } else if (subcommand === "help") {
