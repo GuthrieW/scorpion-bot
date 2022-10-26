@@ -52,7 +52,6 @@ export const evaluateAnswer = async (
   const formattedMoney: string = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    maximumSignificantDigits: 0,
   }).format(newMoneyAmount);
 
   message.reply(
