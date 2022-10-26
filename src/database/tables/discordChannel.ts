@@ -10,7 +10,11 @@ const create = async (channelId: string): Promise<discord_channel> => {
       (${channelId}, 1)
   `;
 
+  console.log("this is before the query", createChannelQuery);
+
   const result: discord_channel[] = await query(createChannelQuery);
+
+  console.log("this is after the query", result);
 
   return {
     channel_id: channelId,
