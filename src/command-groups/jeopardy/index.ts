@@ -20,7 +20,7 @@ export const handleJeopardyCommand = async (
       return;
     }
 
-    await DiscordChannel.updateChannelState(channelId, 1);
+    // await DiscordChannel.updateChannelState(channelId, 1);
 
     const question: JeopardyQuestion = await getRandomQuestion();
     const formattedQuestion: string = formatQuestion(question);
@@ -44,7 +44,7 @@ export const handleJeopardyCommand = async (
         );
       })
       .finally(async () => {
-        await DiscordChannel.updateChannelState(channelId, 0);
+        // await DiscordChannel.updateChannelState(channelId, 0);
       });
   } else if (subcommand === "help") {
     await interaction.reply("Not implemented");
