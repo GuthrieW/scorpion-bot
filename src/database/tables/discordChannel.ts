@@ -60,7 +60,7 @@ const findByIdOrCreate = async (
 
 export const resetChannelStates = async (): Promise<void> => {
   const resetChannelsQuery: SQLStatement = SQL`
-    UPDATE \`discord_channels\`
+    UPDATE \`discord_channel\`
     SET channel_state=0;
   `;
   const result = await query(resetChannelsQuery);
@@ -73,7 +73,7 @@ export const updateChannelState = async (
   newState: 0 | 1
 ): Promise<void> => {
   const updateChannelStateQuery: SQLStatement = SQL`
-    UPDATE \`discord_channels\`
+    UPDATE \`discord_channel\`
     SET channel_state=${newState}
     WHERE id=${channelId};
   `;
