@@ -2,8 +2,14 @@ import SQL from "sql-template-strings";
 import { query } from "..";
 import { discord_user } from "../index.d";
 
+// tested
 const create = async (discordId: string): Promise<discord_user> => {
-  const createTeamQuery = SQL`INSERT INTO \`discord_user\` (discord_id) VALUES (${discordId});`;
+  const createTeamQuery = SQL`
+    INSERT INTO \`discord_user\` 
+      (discord_id) 
+    VALUES 
+      (${discordId});
+  `;
 
   const result = await query(createTeamQuery);
   console.log("result", result);
@@ -12,6 +18,7 @@ const create = async (discordId: string): Promise<discord_user> => {
   };
 };
 
+// tested
 const findByDiscordIdOrCreate = async (
   discordId: string
 ): Promise<discord_user> => {
@@ -52,6 +59,7 @@ const findById = async (
   };
 };
 
+// tested
 const findByDiscordId = async (
   discordId: string
 ): Promise<{ discord_user: discord_user | null; error: string | null }> => {

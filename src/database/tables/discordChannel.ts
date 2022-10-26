@@ -48,6 +48,7 @@ const findByIdOrCreate = async (
 ): Promise<discord_channel> => {
   const existingChannel = await findById(channelId);
 
+  console.log("existingChannel", existingChannel);
   if (existingChannel.discord_channel) {
     return existingChannel.discord_channel;
   }
@@ -55,6 +56,7 @@ const findByIdOrCreate = async (
   await create(channelId);
   const { discord_channel: createdChannel } = await findById(channelId);
 
+  console.log("createdChannel", createdChannel);
   return createdChannel as discord_channel;
 };
 
