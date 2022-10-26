@@ -17,7 +17,10 @@ export const handleJeopardyCommand = async (
 
     // the channel is already in use
     if (discordChannel?.channel_state === 1) {
-      await interaction.reply("There's already a question in this channel");
+      await interaction.reply({
+        content: "There's already a question in this channel",
+        ephemeral: true,
+      });
       return;
     }
 
