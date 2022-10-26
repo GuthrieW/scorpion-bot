@@ -74,6 +74,8 @@ const isCorrectAnswer = (
     .replace(PREPENDED_QUESTION_REGEX, "")
     .trim();
 
+  console.log("userAnswer", userAnswer);
+
   if (ANSWER_PARENTHESES_REGEX.test(correctAnswer)) {
     const matches = ANSWER_PARENTHESES_REGEX.exec(
       correctAnswer
