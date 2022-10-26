@@ -3,14 +3,14 @@ import { query } from "..";
 import { discord_channel } from "../index.d";
 
 const create = async (channelId: string): Promise<discord_channel> => {
-  const createAccountQuery: SQLStatement = SQL`
+  const createChannelQuery: SQLStatement = SQL`
       INSERT INTO \`discord_channel\`
         (channel_id, channel_state)
       VALUES
         (${channelId}, 1)
     `;
 
-  const result: discord_channel[] = await query(createAccountQuery);
+  const result: discord_channel[] = await query(createChannelQuery);
 
   return {
     channel_id: channelId,
@@ -18,7 +18,7 @@ const create = async (channelId: string): Promise<discord_channel> => {
   };
 };
 
-const findById = async (
+const findByChannelId = async (
   channelId: string
 ): Promise<{
   discord_channel: discord_channel | null;
@@ -45,10 +45,10 @@ const findById = async (
   };
 };
 
-const findByIdOrCreate = async (
+const findByChannelIdOrCreate = async (
   channelId: string
 ): Promise<discord_channel> => {
-  const existingChannel = await findById(channelId);
+  const existingChannel = await findByChannelId(channelId);
 
   console.log("existingChannel", existingChannel);
   if (existingChannel.discord_channel) {
@@ -56,13 +56,14 @@ const findByIdOrCreate = async (
   }
 
   await create(channelId);
-  const { discord_channel: createdChannel } = await findById(channelId);
+  const { discord_channel: createdChannel } = await findByChannelId(channelId);
 
   console.log("createdChannel", createdChannel);
   return createdChannel as discord_channel;
 };
 
 export const resetChannelStates = async (): Promise<void> => {
+  return;
   const resetChannelsQuery: SQLStatement = SQL`
     UPDATE \`discord_channel\`
     SET channel_state=0;
@@ -76,6 +77,7 @@ export const updateChannelState = async (
   channelId: string,
   newState: 0 | 1
 ): Promise<void> => {
+  return;
   const updateChannelStateQuery: SQLStatement = SQL`
     UPDATE \`discord_channel\`
     SET channel_state=${newState}
@@ -87,8 +89,8 @@ export const updateChannelState = async (
 
 export const DiscordChannel = {
   create,
-  findById,
-  findByIdOrCreate,
+  findByChannelId,
+  findByChannelIdOrCreate,
   resetChannelStates,
   updateChannelState,
 };

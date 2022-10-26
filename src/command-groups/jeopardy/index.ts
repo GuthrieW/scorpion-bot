@@ -13,7 +13,7 @@ export const handleJeopardyCommand = async (
   if (subcommand === "question") {
     const channelId: string = interaction.channel?.id as string;
     const discordChannel: discord_channel =
-      await DiscordChannel.findByIdOrCreate(channelId);
+      await DiscordChannel.findByChannelIdOrCreate(channelId);
 
     // the channel is already in use
     if (discordChannel?.channel_state === 1) {
