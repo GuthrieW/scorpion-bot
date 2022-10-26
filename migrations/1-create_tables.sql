@@ -15,7 +15,6 @@ CREATE TABLE `discord_user`
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
-
 );
 
 CREATE TABLE `historical_moment`
@@ -31,7 +30,6 @@ CREATE TABLE `historical_moment`
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
-
 );
 
 CREATE TABLE `jeopardy_account`
@@ -44,7 +42,6 @@ CREATE TABLE `jeopardy_account`
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
-
 );
 
 CREATE TABLE `pbe_team`
@@ -56,5 +53,4 @@ CREATE TABLE `pbe_team`
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
-
 );

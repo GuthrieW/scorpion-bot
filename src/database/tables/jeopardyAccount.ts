@@ -107,7 +107,7 @@ const updateCorrectAnswer = async (
     UPDATE \`jeopardy_account\`
     SET money = money + ${moneyToAdd},
     correct_answers = correct_answers + 1
-    WHERE id=${id}
+    WHERE discord_id=${id}
     RETURNING discord_id, money;
   `;
 
@@ -126,7 +126,7 @@ const updateWrongAnswer = async (
     UPDATE \`jeopardy_account\`
     SET money = money - ${moneyToSubtract},
       wrong_answers = wrong_answers + 1
-    WHERE id=${id}
+    WHERE discord_id=${id}
     RETURNING discord_id, money;
   `;
 
