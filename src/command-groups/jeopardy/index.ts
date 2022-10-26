@@ -24,7 +24,7 @@ export const handleJeopardyCommand = async (
     await DiscordChannel.updateChannelState(channelId, 1);
     const question: JeopardyQuestion = await getRandomQuestion();
     const formattedQuestion: string = formatQuestion(question);
-    await interaction.channel?.send(formattedQuestion);
+    await interaction.reply(formattedQuestion);
 
     interaction.channel
       ?.awaitMessages({
