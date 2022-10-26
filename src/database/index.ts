@@ -25,7 +25,10 @@ console.log("databaseConnection", databaseConnection);
 
 export const query = async (queryString: SQLStatement): Promise<any> => {
   try {
-    return await databaseConnection.query(queryString);
+    const result = await databaseConnection.query(queryString);
+    console.log("query", query);
+    console.log("result", result);
+    return result;
   } catch (error) {
     return { error };
   } finally {
