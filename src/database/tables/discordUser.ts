@@ -3,12 +3,7 @@ import { query } from "..";
 import { discord_user } from "../index.d";
 
 const create = async (discordId: string): Promise<discord_user> => {
-  const createTeamQuery = SQL`
-    INSERT INTO \`discord_user\`
-      (discord_id)
-    VALUES
-      (${discordId});
-  `;
+  const createTeamQuery = SQL`INSERT INTO \`discord_user\` (discord_id) VALUES (${discordId});`;
 
   const result = await query(createTeamQuery);
   console.log("result", result);
