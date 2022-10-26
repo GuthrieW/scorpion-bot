@@ -1,7 +1,7 @@
 CREATE TABLE `discord_channel` 
 (
-    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `channel_id` VARCHAR(18) NOT NULL,
+    `id` INT(36) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `channel_id` INT(36) NOT NULL,
     `channel_state` TINYINT(1) NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
@@ -9,19 +9,19 @@ CREATE TABLE `discord_channel`
 
 CREATE TABLE `discord_user`
 (
-    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `discord_id` VARCHAR(18) NOT NULL,
+    `id` INT(36) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `discord_id` INT(36) NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `historical_moment`
 (
-    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `id` INT(36) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `type` VARCHAR(100) NOT NULL,
     `name` VARCHAR(200) NOT NULL,
-    `moment_team_id` VARCHAR(36) NOT NULL,
-    `against_team_id` VARCHAR(36) NOT NULL,
+    `moment_team_id` INT(36) NOT NULL,
+    `against_team_id` INT(36) NOT NULL,
     `player_name` VARCHAR(100),
     `clip_link` VARCHAR(200) NOT NULL,
     `game_index_link` VARCHAR(200) NOT NULL,
@@ -31,18 +31,18 @@ CREATE TABLE `historical_moment`
 
 CREATE TABLE `jeopardy_account`
 (
-    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `discord_id` VARCHAR(18) NOT NULL,
-    `correct_answers` INT(11) NOT NULL,
-    `wrong_answers` INT(11) NOT NULL,
-    `money` INT(11) NOT NULL,
+    `id` INT(36) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `discord_id` INT(36) NOT NULL,
+    `correct_answers` INT(36) NOT NULL,
+    `wrong_answers` INT(36) NOT NULL,
+    `money` INT(36) NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `pbe_team`
 (
-    `id` INT(18) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `id` INT(36) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `city_name` VARCHAR(100) NOT NULL,
     `team_name` VARCHAR(100) NOT NULL,
     `abbreviation` VARCHAR(5) NOT NULL,
