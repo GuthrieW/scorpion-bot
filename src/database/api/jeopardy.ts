@@ -9,12 +9,15 @@ export const addUserMoney = async (
     await JeopardyAccount.findByDiscordIdOrCreate(discordId);
 
   console.log("jeopardyAccount", jeopardyAccount);
-  const { money } = await JeopardyAccount.updateCorrectAnswer(
+  await JeopardyAccount.updateCorrectAnswer(
     jeopardyAccount?.id as string,
     moneyToAdd
   );
 
-  return money;
+  const { jeopardy_account: updatedAccount } =
+    await JeopardyAccount.findByDiscordId(discordId);
+
+  return updatedAccount?.money as number;
 };
 
 export const subtractUserMoney = async (
@@ -25,10 +28,13 @@ export const subtractUserMoney = async (
     await JeopardyAccount.findByDiscordIdOrCreate(discordId);
 
   console.log("jeopardyAccount", jeopardyAccount);
-  const { money } = await JeopardyAccount.updateWrongAnswer(
+  await JeopardyAccount.updateWrongAnswer(
     jeopardyAccount?.id as string,
     moneyToSubtract
   );
 
-  return money;
+  const { jeopardy_account: updatedAccount } =
+    await JeopardyAccount.findByDiscordId(discordId);
+
+  return updatedAccount?.money as number;
 };

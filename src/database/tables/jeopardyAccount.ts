@@ -102,7 +102,7 @@ const findByDiscordId = async (
 const updateCorrectAnswer = async (
   id: string,
   moneyToAdd: number
-): Promise<{ discord_id: string; money: number }> => {
+): Promise<boolean> => {
   const updateCorrectAnswerQuery = SQL`
     UPDATE \`jeopardy_account\`
     SET money = money + ${moneyToAdd},
@@ -111,17 +111,13 @@ const updateCorrectAnswer = async (
   `;
 
   const result: jeopardy_account[] = await query(updateCorrectAnswerQuery);
-  // console.log("result correct", result);
-  return {
-    discord_id: result[0].discord_id as string,
-    money: result[0].money as number,
-  };
+  return true;
 };
 
 const updateWrongAnswer = async (
   id: string,
   moneyToSubtract: number
-): Promise<{ discord_id: string; money: number }> => {
+): Promise<boolean> => {
   const updateWrongAnswerQuery = SQL`
     UPDATE \`jeopardy_account\`
     SET money = money - ${moneyToSubtract},
@@ -130,11 +126,7 @@ const updateWrongAnswer = async (
   `;
 
   const result: jeopardy_account[] = await query(updateWrongAnswerQuery);
-  console.log("result wrong", result);
-  return {
-    discord_id: result[0].discord_id as string,
-    money: result[0].money as number,
-  };
+  return true;
 };
 
 export const JeopardyAccount = {
