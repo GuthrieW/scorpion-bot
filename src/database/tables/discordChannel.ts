@@ -31,7 +31,7 @@ const findByChannelId = async (
   const getDiscordChannelQuery: SQLStatement = SQL`
     SELECT *
     FROM \`discord_channel\`
-    WHERE id=${channelId}
+    WHERE channel_id=${channelId}
   `;
 
   const result: discord_channel[] = await query(getDiscordChannelQuery);
@@ -68,7 +68,6 @@ const findByChannelIdOrCreate = async (
 };
 
 export const resetChannelStates = async (): Promise<void> => {
-  return;
   const resetChannelsQuery: SQLStatement = SQL`
     UPDATE \`discord_channel\`
     SET channel_state=0;
@@ -82,11 +81,10 @@ export const updateChannelState = async (
   channelId: string,
   newState: 0 | 1
 ): Promise<void> => {
-  return;
   const updateChannelStateQuery: SQLStatement = SQL`
     UPDATE \`discord_channel\`
     SET channel_state=${newState}
-    WHERE id=${channelId};
+    WHERE channel_id=${channelId};
   `;
   await query(updateChannelStateQuery);
   return;

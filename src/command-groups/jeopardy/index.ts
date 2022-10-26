@@ -21,6 +21,7 @@ export const handleJeopardyCommand = async (
     console.log(discordChannel?.channel_state === 1);
 
     if (discordChannel?.channel_state === 1) {
+      await interaction.reply("There's already a question in this channel");
       return;
     }
 
