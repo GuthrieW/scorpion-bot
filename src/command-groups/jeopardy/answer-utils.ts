@@ -44,6 +44,7 @@ export const evaluateAnswer = async (
   }
 
   const isCorrect: boolean = isCorrectAnswer(content, answer);
+  console.log("isCorrect", isCorrect);
   const newMoneyAmount: number = isCorrect
     ? await addUserMoney(discordId, money)
     : await subtractUserMoney(discordId, money);
@@ -73,8 +74,10 @@ const isCorrectAnswer = (
     .replace(/[^a-zA-Z0-9 ]/g, "")
     .replace(PREPENDED_QUESTION_REGEX, "")
     .trim();
+  correctAnswer = correctAnswer.toLowerCase();
 
   console.log("userAnswer", userAnswer);
+  console.log("correctAnswer", correctAnswer);
 
   if (ANSWER_PARENTHESES_REGEX.test(correctAnswer)) {
     const matches = ANSWER_PARENTHESES_REGEX.exec(

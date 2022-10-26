@@ -12,7 +12,6 @@ const create = async (discordId: string): Promise<discord_user> => {
   `;
 
   const result = await query(createTeamQuery);
-  console.log("result", result);
   return {
     discord_id: discordId,
   };
