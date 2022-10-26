@@ -33,8 +33,6 @@ client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
   const discord_user: discord_user = await DiscordUser.findByDiscordIdOrCreate(
     interaction.user.id
   );
-  console.log("interaction discord user id: ", interaction.user.id);
-  console.log("Message from: ", JSON.stringify(discord_user));
 
   const { commandName } = interaction;
   if (commandName === "jeopardy") {

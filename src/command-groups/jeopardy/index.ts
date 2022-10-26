@@ -15,7 +15,6 @@ export const handleJeopardyCommand = async (
     const discordChannel: discord_channel =
       await DiscordChannel.findByIdOrCreate(channelId);
 
-    console.log("discordChannel", { discordChannel });
     // the channel is already in use
     if (discordChannel?.channel_state === 1) {
       return;
