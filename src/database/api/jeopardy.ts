@@ -8,6 +8,7 @@ export const addUserMoney = async (
   const jeopardyAccount: jeopardy_account =
     await JeopardyAccount.findByDiscordIdOrCreate(discordId);
 
+  console.log("jeopardyAccount", jeopardyAccount);
   const { money } = await JeopardyAccount.updateCorrectAnswer(
     jeopardyAccount?.id as string,
     moneyToAdd
@@ -23,6 +24,7 @@ export const subtractUserMoney = async (
   const jeopardyAccount: jeopardy_account =
     await JeopardyAccount.findByDiscordIdOrCreate(discordId);
 
+  console.log("jeopardyAccount", jeopardyAccount);
   const { money } = await JeopardyAccount.updateWrongAnswer(
     jeopardyAccount?.id as string,
     moneyToSubtract
