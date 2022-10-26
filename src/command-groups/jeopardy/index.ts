@@ -22,10 +22,9 @@ export const handleJeopardyCommand = async (
     }
 
     await DiscordChannel.updateChannelState(channelId, 1);
-
     const question: JeopardyQuestion = await getRandomQuestion();
     const formattedQuestion: string = formatQuestion(question);
-    await interaction.reply(formattedQuestion);
+    await interaction.channel?.send(formattedQuestion);
 
     interaction.channel
       ?.awaitMessages({
@@ -35,17 +34,17 @@ export const handleJeopardyCommand = async (
       })
       .then((collected) => {
         if (collected.size === 0) {
-          interaction.reply(`The correct answer was **${question.answer}**`);
+          interaction.channel?.send(
+            `The correct answer was **${question.answer}**`
+          );
         }
       })
       .catch((error) => {
-        console.log(error);
-        interaction.reply(
+        interaction.channel?.send(
           `There was a database error.\nThe correct answer was **${question.answer}**`
         );
       })
       .finally(async () => {
-        console.log("channel state set to 0");
         await DiscordChannel.updateChannelState(channelId, 0);
       });
   } else if (subcommand === "help") {

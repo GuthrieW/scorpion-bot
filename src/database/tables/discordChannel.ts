@@ -7,7 +7,7 @@ const create = async (channelId: string): Promise<discord_channel> => {
     INSERT INTO \`discord_channel\`
       (channel_id, channel_state)
     VALUES
-      (${channelId}, 0)
+      (${channelId}, 0);
   `;
 
   const result: discord_channel[] = await query(createChannelQuery);
@@ -27,7 +27,7 @@ const findByChannelId = async (
   const getDiscordChannelQuery: SQLStatement = SQL`
     SELECT *
     FROM \`discord_channel\`
-    WHERE channel_id=${channelId}
+    WHERE channel_id=${channelId};
   `;
 
   const result: discord_channel[] = await query(getDiscordChannelQuery);

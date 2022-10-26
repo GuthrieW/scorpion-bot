@@ -1,7 +1,6 @@
 import SQL from "sql-template-strings";
 import { query } from "..";
 import { jeopardy_account } from "../index.d";
-import { DiscordUser } from "./discordUser";
 
 const create = async (
   newJeopardyAccount: jeopardy_account
@@ -12,8 +11,7 @@ const create = async (
     INSERT INTO \`jeopardy_account\`
       ( discord_id, correct_answers, wrong_answers, money)
     VALUES
-      ( ${discord_id}, 0, 0, 0)
-    RETURNING discord_id, correct_answers, wrong_answers, money;
+      ( ${discord_id}, 0, 0, 0);
   `;
 
   const result = await query(createAccountQuery);

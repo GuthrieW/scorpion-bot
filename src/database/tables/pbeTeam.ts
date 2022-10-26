@@ -8,8 +8,7 @@ const create = async (newTeam: pbe_team): Promise<pbe_team> => {
     INSERT INTO \`pbe_team\`
       (id, city_name, team_name, abbreviation)
     VALUES
-      (${city_name}, ${team_name}, ${abbreviation})
-    RETURNING id, city_name, team_name, abbreviation;
+      (${city_name}, ${team_name}, ${abbreviation});
   `;
   const result = await query(createTeamQuery);
 
