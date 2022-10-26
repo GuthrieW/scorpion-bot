@@ -48,6 +48,7 @@ export const evaluateAnswer = async (
     ? await addUserMoney(discordId, money)
     : await subtractUserMoney(discordId, money);
 
+  console.log("newMoney", newMoneyAmount);
   const formattedMoney: string = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
