@@ -4,7 +4,10 @@ import { QUESTION_TIMEOUT } from "./_constants";
 import { getRandomQuestion } from "./cluebase-api";
 import { JeopardyQuestion } from "./index.d";
 import { discord_channel } from "../../../src/database/index.d";
-import { DiscordChannel } from "../../../src/database/tables/discordChannel";
+import {
+  DiscordChannel,
+  updateChannelState,
+} from "../../../src/database/tables/discordChannel";
 
 export const handleJeopardyCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
@@ -51,6 +54,9 @@ export const handleJeopardyCommand = async (
       .finally(async () => {
         await DiscordChannel.updateChannelState(channelId, 0);
       });
+  } else if (subcommand === "reset_channel") {
+    await updateChannelState(interaction.channel?.id as string, 0);
+    await interaction.reply("Channel reset!");
   } else if (subcommand === "help") {
     await interaction.reply("Not implemented");
   }
