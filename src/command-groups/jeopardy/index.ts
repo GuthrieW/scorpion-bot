@@ -95,21 +95,23 @@ const formatLeaderboard = async (
   const fields: APIEmbedField[] = await Promise.all(
     leaderboard.map(
       async (jeopardyAccount: jeopardy_account, index: number) => {
-        console.log("jeopardyAccount", jeopardyAccount);
-
-        if (!jeopardyAccount?.discord_id) {
+        try {
+          if (jeopardyAccount?.discord_id) {
+            const user = await client.users.fetch(jeopardyAccount?.discord_id);
+            console.log("user", user);
+            return {
+              name: `${index + 1}. ${user?.username}`,
+              value: `${jeopardyAccount.money}`,
+            };
+          } else {
+            throw new Error("User does not have discord id");
+          }
+        } catch (error) {
           return {
             name: `$${index + 1}. N/A`,
             value: `${jeopardyAccount.money}`,
           };
         }
-
-        const user = await client.users.fetch(jeopardyAccount.discord_id);
-        console.log("user", user);
-        return {
-          name: `${index + 1}. ${user?.username}`,
-          value: `${jeopardyAccount.money}`,
-        };
       }
     )
   );
