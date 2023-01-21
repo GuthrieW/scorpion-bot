@@ -28,12 +28,15 @@ export const handleJeopardyCommand = async (
   if (subcommand === "question") {
     handleJeoparyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
-    console.log(
-      "test",
-      (await interaction.client.users.fetch(interaction.user.id)).username
-    );
+    // console.log(
+    //   "test",
+    //   (await interaction.client.users.fetch(interaction.user.id)).username
+    // );
     const leaderboard = await JeopardyAccount.getLeaderboard();
-    const formattedLeaderboard = await formatLeaderboard(leaderboard, client);
+    const formattedLeaderboard = await formatLeaderboard(
+      leaderboard,
+      interaction
+    );
     await interaction.reply({ embeds: [formattedLeaderboard] });
   } else if (subcommand === "reset-channel") {
     await updateChannelState(interaction.channel?.id as string, 0);
@@ -90,7 +93,7 @@ const handleJeoparyQuestion = async (
 
 const formatLeaderboard = async (
   leaderboard: jeopardy_account[],
-  client: Client
+  interaction: ChatInputCommandInteraction<CacheType>
 ): Promise<APIEmbed> => {
   const fields: APIEmbedField[] = await Promise.all(
     leaderboard.map(
@@ -98,7 +101,9 @@ const formatLeaderboard = async (
         try {
           // console.log("ja", jeopardyAccount);
           if (jeopardyAccount?.discord_id) {
-            const user = await client.users.fetch(jeopardyAccount?.discord_id);
+            const user = await interaction.client.users.fetch(
+              jeopardyAccount?.discord_id
+            );
             return {
               name: `${index + 1}. ${user?.username}`,
               value: `$${jeopardyAccount.money}`,
@@ -116,6 +121,8 @@ const formatLeaderboard = async (
       }
     )
   );
+
+  error;
 
   const leaderboardEmbed: APIEmbed = {
     color: 0x9f1c33,
