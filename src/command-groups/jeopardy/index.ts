@@ -4,6 +4,7 @@ import {
   CacheType,
   ChatInputCommandInteraction,
   Client,
+  GuildMember,
   Message,
   User,
 } from "discord.js";
@@ -100,12 +101,12 @@ const formatLeaderboard = async (
         try {
           // console.log("ja", jeopardyAccount);
           if (jeopardyAccount?.discord_id) {
-            const user = await interaction.guild?.members.fetch(
-              jeopardyAccount?.discord_id
-            );
-            console.log("user", user);
+            const user: GuildMember | undefined =
+              await interaction.guild?.members.fetch(
+                jeopardyAccount?.discord_id
+              );
             return {
-              name: `${index + 1}. ${user?.nickname}`,
+              name: `${index + 1}. ${user?.user.username}`,
               value: `$${jeopardyAccount.money}`,
             };
           } else {
