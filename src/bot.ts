@@ -30,10 +30,6 @@ client.once("ready", async () => {
 client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
   if (!interaction.isChatInputCommand()) return;
 
-  const discord_user: discord_user = await DiscordUser.findByDiscordIdOrCreate(
-    interaction.user.id
-  );
-
   try {
     const { commandName } = interaction;
     if (commandName === "jeopardy") {
