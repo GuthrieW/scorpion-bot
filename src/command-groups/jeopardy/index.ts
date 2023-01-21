@@ -28,6 +28,10 @@ export const handleJeopardyCommand = async (
   if (subcommand === "question") {
     handleJeoparyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
+    console.log(
+      "test",
+      (await interaction.client.users.fetch(interaction.user.id)).username
+    );
     const leaderboard = await JeopardyAccount.getLeaderboard();
     const formattedLeaderboard = await formatLeaderboard(leaderboard, client);
     await interaction.reply({ embeds: [formattedLeaderboard] });
