@@ -28,6 +28,7 @@ export const handleJeopardyCommand = async (
   if (subcommand === "question") {
     handleJeopardyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
+    console.log("testing testing testing");
     // console.log(
     //   "test",
     //   (await interaction.client.users.fetch(interaction.user.id)).username
