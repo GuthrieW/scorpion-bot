@@ -24,6 +24,7 @@ export const handleJeopardyCommand = async (
   client: Client
 ) => {
   const subcommand = interaction.options.getSubcommand();
+  console.log(subcommand);
   if (subcommand === "question") {
     handleJeoparyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
