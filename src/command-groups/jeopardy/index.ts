@@ -99,7 +99,7 @@ const formatLeaderboard = async (
         try {
           // console.log("ja", jeopardyAccount);
           if (jeopardyAccount?.discord_id) {
-            console.log("jeopardyAccount", jeopardyAccount);
+            console.log("jeopardyAccount", jeopardyAccount.discord_id);
             const member: GuildMember | undefined =
               await interaction.guild?.members.fetch(
                 jeopardyAccount?.discord_id
