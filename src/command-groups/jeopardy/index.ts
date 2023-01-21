@@ -99,7 +99,7 @@ const formatLeaderboard = async (
         try {
           if (jeopardyAccount?.discord_id) {
             console.log("jeopardyAccount", jeopardyAccount.discord_id);
-            const user = interaction.client.users.fetch(
+            const user = await interaction.client.users.fetch(
               jeopardyAccount.discord_id
             );
             console.log("user", user);
