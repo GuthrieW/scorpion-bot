@@ -17,7 +17,7 @@ import {
   DiscordChannel,
   updateChannelState,
 } from "../../../src/database/tables/discordChannel";
-import { JeopardyAccount } from "src/database/tables/jeopardyAccount";
+import { JeopardyAccount } from "../../database/tables/jeopardyAccount";
 import { DiscordUser } from "src/database/tables/discordUser";
 
 export const handleJeopardyCommand = async (
