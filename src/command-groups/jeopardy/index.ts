@@ -92,11 +92,12 @@ const formatLeaderboard = async (
         };
 
         if (!jeopardyAccount?.discord_id) {
-          field.name = `${index}. N/A`;
+          field.name = `${index + 1}. N/A`;
         } else {
           const user = await DiscordUser.findByDiscordId(
             jeopardyAccount.discord_id
           );
+          console.log("user", user);
           field.name = `${index}. ${user.discord_user?.username}`;
         }
 

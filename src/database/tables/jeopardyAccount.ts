@@ -129,7 +129,7 @@ const getLeaderboard = async (): Promise<jeopardy_account[]> => {
   const getLeaderboardQuery = SQL`
     SELECT *
     FROM \`jeopardy_account\`
-    ORDER BY money
+    ORDER BY money DESC
     LIMIT 10;
   `;
 
