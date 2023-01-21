@@ -29,9 +29,7 @@ export const handleJeopardyCommand = async (
   if (subcommand === "question") {
     handleJeopardyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
-    console.log("testing testing testing");
     const leaderboard = await JeopardyAccount.getLeaderboard();
-    console.log("leaderboard", leaderboard);
     const formattedLeaderboard = await formatLeaderboard(
       leaderboard,
       interaction
@@ -101,13 +99,14 @@ const formatLeaderboard = async (
         try {
           // console.log("ja", jeopardyAccount);
           if (jeopardyAccount?.discord_id) {
+            console.log("jeopardyAccount", jeopardyAccount);
             const member: GuildMember | undefined =
               await interaction.guild?.members.fetch(
                 jeopardyAccount?.discord_id
               );
-            console.log("member", member);
-            console.log("user", member?.user);
-            console.log("nickname", member?.nickname);
+            // console.log("member", member);
+            // console.log("user", member?.user);
+            // console.log("nickname", member?.nickname);
 
             return {
               name: `${index + 1}. ${member?.user.username}`,
