@@ -104,6 +104,7 @@ const formatLeaderboard = async (
             const user = await interaction.guild?.members.fetch(
               jeopardyAccount?.discord_id
             );
+            console.log("user", user);
             // const user = await interaction.client.users.fetch();
             return {
               name: `${index + 1}. ${user?.nickname}`,
