@@ -95,21 +95,20 @@ const formatLeaderboard = async (
   const fields: APIEmbedField[] = await Promise.all(
     leaderboard.map(
       async (jeopardyAccount: jeopardy_account, index: number) => {
-        let field: APIEmbedField = {
-          name: "",
-          value: `${jeopardyAccount.money}`,
-        };
-
         if (!jeopardyAccount?.discord_id) {
-          field.name = `$${index + 1}. N/A`;
-        } else {
-          // const user = await client.user?.fetch();
-          const user = await client.users.fetch(jeopardyAccount.discord_id);
-          console.log("user", user);
-          field.name = `${index}. ${user?.username}`;
+          return {
+            name: `$${index + 1}. N/A`,
+            value: `${jeopardyAccount.money}`,
+          };
         }
 
-        return field;
+        console.log("discord_id", jeopardyAccount.discord_id);
+        const user = await client.users.fetch(jeopardyAccount.discord_id);
+        console.log("user", user);
+        return {
+          name: `${index + 1}. ${user?.username}`,
+          value: `${jeopardyAccount.money}`,
+        };
       }
     )
   );
