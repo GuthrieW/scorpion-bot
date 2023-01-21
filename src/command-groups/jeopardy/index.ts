@@ -3,7 +3,9 @@ import {
   APIEmbedField,
   CacheType,
   ChatInputCommandInteraction,
+  Client,
   Message,
+  User,
 } from "discord.js";
 import { evaluateAnswer, formatQuestion } from "./answer-utils";
 import { QUESTION_TIMEOUT } from "./_constants";
@@ -18,14 +20,15 @@ import { JeopardyAccount } from "../../database/tables/jeopardyAccount";
 import { DiscordUser } from "../../database/tables/discordUser";
 
 export const handleJeopardyCommand = async (
-  interaction: ChatInputCommandInteraction<CacheType>
+  interaction: ChatInputCommandInteraction<CacheType>,
+  client: Client
 ) => {
   const subcommand = interaction.options.getSubcommand();
   if (subcommand === "question") {
     handleJeoparyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
     const leaderboard = await JeopardyAccount.getLeaderboard();
-    const formattedLeaderboard = await formatLeaderboard(leaderboard);
+    const formattedLeaderboard = await formatLeaderboard(leaderboard, client);
     await interaction.reply({ embeds: [formattedLeaderboard] });
   } else if (subcommand === "reset-channel") {
     await updateChannelState(interaction.channel?.id as string, 0);
@@ -81,7 +84,8 @@ const handleJeoparyQuestion = async (
 };
 
 const formatLeaderboard = async (
-  leaderboard: jeopardy_account[]
+  leaderboard: jeopardy_account[],
+  client: Client
 ): Promise<APIEmbed> => {
   const fields: APIEmbedField[] = await Promise.all(
     leaderboard.map(
@@ -92,13 +96,11 @@ const formatLeaderboard = async (
         };
 
         if (!jeopardyAccount?.discord_id) {
-          field.name = `${index + 1}. N/A`;
+          field.name = `$${index + 1}. N/A`;
         } else {
-          const user = await DiscordUser.findByDiscordId(
-            jeopardyAccount.discord_id
-          );
+          const user = client.users.cache.get(jeopardyAccount.discord_id);
           console.log("user", user);
-          field.name = `${index}. ${user.discord_user?.username}`;
+          field.name = `${index}. ${user?.username}`;
         }
 
         return field;

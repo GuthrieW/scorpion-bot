@@ -37,7 +37,7 @@ client.on("interactionCreate", async (interaction: Interaction<CacheType>) => {
   try {
     const { commandName } = interaction;
     if (commandName === "jeopardy") {
-      await handleJeopardyCommand(interaction);
+      await handleJeopardyCommand(interaction, client);
     } else if (commandName === "dank") {
       await handleDankCommand(interaction);
     } else if (commandName === "history") {
