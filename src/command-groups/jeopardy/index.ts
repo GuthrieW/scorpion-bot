@@ -101,11 +101,12 @@ const formatLeaderboard = async (
         try {
           // console.log("ja", jeopardyAccount);
           if (jeopardyAccount?.discord_id) {
-            const user = await interaction.client.users.fetch(
+            const user = await interaction.guild?.members.fetch(
               jeopardyAccount?.discord_id
             );
+            // const user = await interaction.client.users.fetch();
             return {
-              name: `${index + 1}. ${user?.username}`,
+              name: `${index + 1}. ${user?.nickname}`,
               value: `$${jeopardyAccount.money}`,
             };
           } else {
