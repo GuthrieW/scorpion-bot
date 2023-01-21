@@ -104,7 +104,7 @@ const formatLeaderboard = async (
           field.name = `$${index + 1}. N/A`;
         } else {
           // const user = await client.user?.fetch();
-          const user = client.users.cache.get(jeopardyAccount.discord_id);
+          const user = await client.users.fetch(jeopardyAccount.discord_id);
           console.log("user", user);
           field.name = `${index}. ${user?.username}`;
         }
