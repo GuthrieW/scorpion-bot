@@ -18,5 +18,9 @@ export const handleDankCommand = async (
     await interaction.reply(
       "https://cdn.betterttv.net/emote/5d38aaa592fc550c2d5996b8/3x.gif"
     );
+  } else if (subcommand === "m4xx-kuma") {
+    await interaction.reply(
+      "https://tenor.com/view/barghest-bear-cybernetic-bear-machine-roar-gif-26208002"
+    );
   }
 };

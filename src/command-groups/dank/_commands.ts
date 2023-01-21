@@ -18,6 +18,9 @@ export const generateDankCommands = (): any[] => {
       )
       .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
         subcommand.setName("help").setDescription("If you need help meming")
+      )
+      .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+        subcommand.setName("m4xx-kuma").setDescription("Unleash the beast")
       ),
   ];
 };

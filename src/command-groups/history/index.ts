@@ -4,7 +4,7 @@ export const handleHistoryCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
 ) => {
   const subcommand = interaction.options.getSubcommand();
-  if (subcommand === "death_valley") {
+  if (subcommand === "death-valley") {
     await interaction.reply("Not implemented");
   } else if (subcommand === "help") {
     await interaction.reply("Not implemented");

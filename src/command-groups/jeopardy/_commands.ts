@@ -15,7 +15,12 @@ export const generateJeopardyCommands = (): any[] => {
       )
       .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
         subcommand
-          .setName("reset_channel")
+          .setName("leaderboard")
+          .setDescription("Display the top 10 highest earners")
+      )
+      .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+        subcommand
+          .setName("reset-channel")
           .setDescription("Reset the channel if you can't get a new question")
       ),
   ];

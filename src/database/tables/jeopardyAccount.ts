@@ -125,6 +125,18 @@ const updateWrongAnswer = async (
   return true;
 };
 
+const getLeaderboard = async (): Promise<jeopardy_account[]> => {
+  const getLeaderboardQuery = SQL`
+    SELECT *
+    FROM \`jeopardy_account\`
+    ORDER BY money
+    LIMIT 10;
+  `;
+
+  const result: jeopardy_account[] = await query(getLeaderboardQuery);
+  return result;
+};
+
 export const JeopardyAccount = {
   create,
   findByDiscordIdOrCreate,
@@ -132,4 +144,5 @@ export const JeopardyAccount = {
   findByDiscordId,
   updateCorrectAnswer,
   updateWrongAnswer,
+  getLeaderboard,
 };
