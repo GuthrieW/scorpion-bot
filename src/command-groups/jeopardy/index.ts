@@ -9,16 +9,13 @@ import { evaluateAnswer, formatQuestion } from "./answer-utils";
 import { QUESTION_TIMEOUT } from "./_constants";
 import { getRandomQuestion } from "./cluebase-api";
 import { JeopardyQuestion } from "./index.d";
-import {
-  discord_channel,
-  jeopardy_account,
-} from "../../../src/database/index.d";
+import { discord_channel, jeopardy_account } from "../../database/index.d";
 import {
   DiscordChannel,
   updateChannelState,
-} from "../../../src/database/tables/discordChannel";
+} from "../../database/tables/discordChannel";
 import { JeopardyAccount } from "../../database/tables/jeopardyAccount";
-import { DiscordUser } from "src/database/tables/discordUser";
+import { DiscordUser } from "../../database/tables/discordUser";
 
 export const handleJeopardyCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
