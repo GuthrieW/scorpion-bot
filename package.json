@@ -10,7 +10,7 @@
     "deploy-commands": "ts-node src/bin/deploy-commands.ts",
     "start": "ts-node src/bot.ts",
     "test-database": "ts-node src/bin/test-database.ts",
-    "rebuild": "yarn deploy-commands && yarn start"
+    "rebuild": "yarn && yarn deploy-commands && yarn start"
   },
   "dependencies": {
     "axios": "^1.1.2",
