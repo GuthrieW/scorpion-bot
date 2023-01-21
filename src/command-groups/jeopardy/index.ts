@@ -34,10 +34,12 @@ export const handleJeopardyCommand = async (
     //   (await interaction.client.users.fetch(interaction.user.id)).username
     // );
     const leaderboard = await JeopardyAccount.getLeaderboard();
+    console.log("leaderboard", leaderboard);
     const formattedLeaderboard = await formatLeaderboard(
       leaderboard,
       interaction
     );
+    console.log("formattedLeaderboard", formattedLeaderboard);
     await interaction.channel?.send({ embeds: [formattedLeaderboard] });
   } else if (subcommand === "reset-channel") {
     await updateChannelState(interaction.channel?.id as string, 0);
@@ -96,6 +98,7 @@ const formatLeaderboard = async (
   leaderboard: jeopardy_account[],
   interaction: ChatInputCommandInteraction<CacheType>
 ): Promise<APIEmbed> => {
+  console.log("before fetching all members");
   console.log("all members", await interaction.guild?.members.fetch());
   interaction.reply("fetching...");
   const fields: APIEmbedField[] = await Promise.all(
