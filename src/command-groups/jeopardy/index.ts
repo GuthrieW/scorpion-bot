@@ -122,8 +122,6 @@ const formatLeaderboard = async (
     )
   );
 
-  error;
-
   const leaderboardEmbed: APIEmbed = {
     color: 0x9f1c33,
     title: "Jeopardy Leaderboard",
