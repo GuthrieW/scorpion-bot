@@ -95,6 +95,7 @@ const formatLeaderboard = async (
   leaderboard: jeopardy_account[],
   interaction: ChatInputCommandInteraction<CacheType>
 ): Promise<APIEmbed> => {
+  console.log("all members", await interaction.guild?.members.fetch());
   const fields: APIEmbedField[] = await Promise.all(
     leaderboard.map(
       async (jeopardyAccount: jeopardy_account, index: number) => {
@@ -104,8 +105,7 @@ const formatLeaderboard = async (
             const user = await interaction.guild?.members.fetch(
               jeopardyAccount?.discord_id
             );
-            console.log("user", user);
-            // const user = await interaction.client.users.fetch();
+            // console.log("user", user);
             return {
               name: `${index + 1}. ${user?.nickname}`,
               value: `$${jeopardyAccount.money}`,
