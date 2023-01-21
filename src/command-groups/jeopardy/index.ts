@@ -96,6 +96,7 @@ const formatLeaderboard = async (
     leaderboard.map(
       async (jeopardyAccount: jeopardy_account, index: number) => {
         if (!jeopardyAccount?.discord_id) {
+          console.log("jeopardyAccount", jeopardyAccount);
           return {
             name: `$${index + 1}. N/A`,
             value: `${jeopardyAccount.money}`,
