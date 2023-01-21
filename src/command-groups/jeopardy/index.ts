@@ -96,7 +96,7 @@ const formatLeaderboard = async (
     leaderboard.map(
       async (jeopardyAccount: jeopardy_account, index: number) => {
         try {
-          console.log("ja", jeopardyAccount);
+          // console.log("ja", jeopardyAccount);
           if (jeopardyAccount?.discord_id) {
             const user = await client.users.fetch(jeopardyAccount?.discord_id);
             return {
@@ -107,6 +107,7 @@ const formatLeaderboard = async (
             throw new Error("User does not have discord id");
           }
         } catch (error) {
+          console.log("error", error);
           return {
             name: `${index + 1}. N/A`,
             value: `$${jeopardyAccount.money}`,
