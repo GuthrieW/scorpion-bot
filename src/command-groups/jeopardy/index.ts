@@ -26,7 +26,7 @@ export const handleJeopardyCommand = async (
   const subcommand = interaction.options.getSubcommand();
   console.log(subcommand);
   if (subcommand === "question") {
-    handleJeoparyQuestion(interaction);
+    handleJeopardyQuestion(interaction);
   } else if (subcommand === "leaderboard") {
     // console.log(
     //   "test",
@@ -37,7 +37,7 @@ export const handleJeopardyCommand = async (
       leaderboard,
       interaction
     );
-    await interaction.reply({ embeds: [formattedLeaderboard] });
+    await interaction.channel?.send({ embeds: [formattedLeaderboard] });
   } else if (subcommand === "reset-channel") {
     await updateChannelState(interaction.channel?.id as string, 0);
     await interaction.reply("Channel reset!");
@@ -46,7 +46,7 @@ export const handleJeopardyCommand = async (
   }
 };
 
-const handleJeoparyQuestion = async (
+const handleJeopardyQuestion = async (
   interaction: ChatInputCommandInteraction<CacheType>
 ) => {
   const channelId: string = interaction.channel?.id as string;
@@ -96,6 +96,7 @@ const formatLeaderboard = async (
   interaction: ChatInputCommandInteraction<CacheType>
 ): Promise<APIEmbed> => {
   console.log("all members", await interaction.guild?.members.fetch());
+  interaction.reply("fetching...");
   const fields: APIEmbedField[] = await Promise.all(
     leaderboard.map(
       async (jeopardyAccount: jeopardy_account, index: number) => {
