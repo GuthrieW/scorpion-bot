@@ -98,22 +98,16 @@ const formatLeaderboard = async (
       async (jeopardyAccount: jeopardy_account, index: number) => {
         try {
           if (jeopardyAccount?.discord_id) {
-            console.log("jeopardyAccount", jeopardyAccount.discord_id);
-            const user = await interaction.client.users.fetch(
-              jeopardyAccount.discord_id
-            );
-            console.log("user", user);
-            // const member: GuildMember | undefined =
-            //   await interaction.guild?.members.fetch(
-            //     jeopardyAccount?.discord_id
-            //   );
+            const member: GuildMember | undefined =
+              await interaction.guild?.members.fetch(
+                jeopardyAccount.discord_id
+              );
             // console.log("member", member);
             // console.log("user", member?.user);
             // console.log("nickname", member?.nickname);
 
             return {
-              name: `${index + 1}. I'm going to die if this shit continues`,
-              // name: `${index + 1}. ${member?.user.username}`,
+              name: `${index + 1}. ${member?.user.username}`,
               value: `$${jeopardyAccount.money}`,
             };
           } else {
