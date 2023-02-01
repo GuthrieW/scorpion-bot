@@ -20,29 +20,28 @@ export const generateDankCommands =
         )
         .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
           subcommand.setName("help").setDescription("List commands")
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand.setName("krash").setDescription("Commit bank robbery")
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand.setName("m4xx-kuma").setDescription("Unleash the beast")
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand.setName("mis").setDescription("fr?")
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand
+            .setName("please-clap")
+            .setDescription("Need some encouragement?")
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand
+            .setName("poe")
+            .setDescription(
+              "How many K's will Poe Scott get in his next start?"
+            )
         ),
-      // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      //   subcommand.setName("krash").setDescription("Commit bank robbery")
-      // )
-      // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      //   subcommand.setName("mis").setDescription("fr?")
-      // )
-
-      // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      //   subcommand.setName("m4xx-kuma").setDescription("Unleash the beast")
-      // )
-      // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      //   subcommand
-      //     .setName("poe")
-      //     .setDescription(
-      //       "How many K's will Poe Scott get in his next start?"
-      //     )
-      // )
-      // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      //   subcommand
-      //     .setName("please-clap")
-      //     .setDescription("Need some encouragement?")
-      // ),
     ];
   };
 
