@@ -1,4 +1,5 @@
 import { CacheType, ChatInputCommandInteraction } from "discord.js";
+import { generateCommandList } from "./_commands";
 
 export const handleDankCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
@@ -15,12 +16,18 @@ export const handleDankCommand = async (
   } else if (subcommand === "mis") {
     await interaction.reply("fr?");
   } else if (subcommand === "help") {
-    await interaction.reply(
-      "https://cdn.betterttv.net/emote/5d38aaa592fc550c2d5996b8/3x.gif"
-    );
+    const commandList = generateCommandList();
+    await interaction.reply({ embeds: [commandList] });
   } else if (subcommand === "m4xx-kuma") {
     await interaction.reply(
       "https://tenor.com/view/barghest-bear-cybernetic-bear-machine-roar-gif-26208002"
+    );
+  } else if (subcommand === "poe") {
+    const strikeouts = Math.floor(Math.random() * 28);
+    await interaction.reply(`Poe Scott will get... ${strikeouts} K's!`);
+  } else if (subcommand === "please-clap") {
+    await interaction.reply(
+      "https://cdn.betterttv.net/emote/5d38aaa592fc550c2d5996b8/3x.gif"
     );
   }
 };
