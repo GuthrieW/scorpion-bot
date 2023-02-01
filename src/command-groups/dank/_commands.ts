@@ -47,6 +47,7 @@ export const generateDankCommands =
 export const generateCommandList = (): APIEmbed => {
   const commands: SlashCommandSubcommandsOnlyBuilder[] = generateDankCommands();
   const fields: APIEmbedField[] = commands.map((command) => {
+    console.log("command", command);
     return {
       name: command.name,
       value: command.description,
