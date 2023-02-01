@@ -16,6 +16,9 @@ export const generateDankCommands =
           subcommand
             .setName("dvs")
             .setDescription("Describe Death Valley with two adjectives")
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand.setName("help").setDescription("List commands")
         ),
       // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
       //   subcommand.setName("krash").setDescription("Commit bank robbery")
@@ -23,9 +26,7 @@ export const generateDankCommands =
       // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
       //   subcommand.setName("mis").setDescription("fr?")
       // )
-      // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      //   subcommand.setName("help").setDescription("List commands")
-      // )
+
       // .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
       //   subcommand.setName("m4xx-kuma").setDescription("Unleash the beast")
       // )
