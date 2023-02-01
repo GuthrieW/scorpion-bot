@@ -4,6 +4,7 @@ import {
   SlashCommandBuilder,
   SlashCommandSubcommandBuilder,
   SlashCommandSubcommandsOnlyBuilder,
+  ToAPIApplicationCommandOptions,
 } from "discord.js";
 
 export const generateDankCommands =
@@ -45,13 +46,21 @@ export const generateDankCommands =
     ];
   };
 
+type SubcommandOptions = {
+  name: string;
+  name_localizations: undefined;
+  description: string;
+  description_localizations: undefined;
+  options: [];
+};
+
 export const generateCommandList = (): APIEmbed => {
   const commands: SlashCommandSubcommandsOnlyBuilder[] = generateDankCommands();
-  const fields: APIEmbedField[] = commands.map((command) => {
-    console.log("command", command);
+  const fields = commands[0].options.map((option: unknown) => {
+    const opt = option as SubcommandOptions;
     return {
-      name: command.name,
-      value: command.description,
+      name: opt?.name,
+      value: opt?.description,
     };
   });
 
