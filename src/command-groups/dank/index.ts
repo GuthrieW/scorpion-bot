@@ -29,5 +29,9 @@ export const handleDankCommand = async (
     await interaction.reply(
       "https://cdn.betterttv.net/emote/5d38aaa592fc550c2d5996b8/3x.gif"
     );
+  } else if (subcommand === "dvd") {
+    await interaction.reply(
+      "https://thumbs.gfycat.com/HandsomeDeafeningAmethystgemclam-max-1mb.gif"
+    );
   }
 };

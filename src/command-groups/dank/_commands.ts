@@ -41,6 +41,11 @@ export const generateDankCommands =
             .setDescription(
               "How many K's will Poe Scott get in his next start?"
             )
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+          subcommand
+            .setName("dvd")
+            .setDescription("Will it ever touch the corner?")
         ),
     ];
   };
