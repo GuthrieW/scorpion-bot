@@ -1,7 +1,7 @@
 import { APIEmbed } from "discord.js";
 import { generateCommandList } from "./generateCommandList";
 
-type SubCommand = {
+export type SubCommand = {
   title: string;
   description: string;
   reply: string | { embeds: APIEmbed[] };

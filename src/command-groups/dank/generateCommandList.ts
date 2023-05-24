@@ -1,21 +1,11 @@
-import { APIEmbed, SlashCommandSubcommandsOnlyBuilder } from "discord.js";
-import { generateDankCommands } from "./_commands";
-
-type SubcommandOptions = {
-  name: string;
-  name_localizations: undefined;
-  description: string;
-  description_localizations: undefined;
-  options: [];
-};
+import { APIEmbed } from "discord.js";
+import { DANK_SUB_COMMANDS, SubCommand } from "./_constants";
 
 export function generateCommandList(): APIEmbed {
-  const commands: SlashCommandSubcommandsOnlyBuilder[] = generateDankCommands();
-  const fields = commands[0].options.map((option: unknown) => {
-    const opt = option as SubcommandOptions;
+  const fields = Object.values(DANK_SUB_COMMANDS).map((option: SubCommand) => {
     return {
-      name: opt?.name,
-      value: opt?.description,
+      name: option.title,
+      value: option.description,
     };
   });
 
