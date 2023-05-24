@@ -75,8 +75,8 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
     description: "take your base",
     reply: "https://media.tenor.com/g0Tp5wjXrSgAAAAC/simpsons-batter.gif",
   },
-  "3TO": {
-    title: "3TO",
+  "three-true-outcomes": {
+    title: "three-true-outcomes",
     description: "What are the three true outcomes?",
     reply: "1.)Home Run\n2.)Grand Slam\n3.)Walkoff",
   },
