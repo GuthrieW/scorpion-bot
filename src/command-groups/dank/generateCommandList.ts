@@ -9,7 +9,7 @@ type SubcommandOptions = {
   options: [];
 };
 
-export const generateCommandList = (): APIEmbed => {
+export function generateCommandList(): APIEmbed {
   const commands: SlashCommandSubcommandsOnlyBuilder[] = generateDankCommands();
   const fields = commands[0].options.map((option: unknown) => {
     const opt = option as SubcommandOptions;
@@ -24,4 +24,4 @@ export const generateCommandList = (): APIEmbed => {
     title: "Dank Commands",
     fields,
   };
-};
+}
