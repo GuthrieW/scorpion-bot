@@ -1,5 +1,5 @@
 import { APIEmbed } from "discord.js";
-import { generateCommandList } from "./_commands";
+import { generateCommandList } from "./generateCommandList";
 
 type SubCommand = {
   title: string;
@@ -14,8 +14,6 @@ const LEBOWSKI_GIFS = [
   "https://64.media.tumblr.com/c763c578790531922b87fce7af853c82/3228a5b2fe5aa920-f4/s400x600/da687064762a7398bee8148cfd87ee4ce02688fd.gif",
   "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
 ];
-
-const OSTMAN_GIFS = [];
 
 export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   dvs: {

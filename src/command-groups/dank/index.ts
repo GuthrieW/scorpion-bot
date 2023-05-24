@@ -1,5 +1,4 @@
 import { CacheType, ChatInputCommandInteraction } from "discord.js";
-import { generateCommandList } from "./_commands";
 import { DANK_SUB_COMMANDS } from "./_constants";
 
 export const handleDankCommand = async (
