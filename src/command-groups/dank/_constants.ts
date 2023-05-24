@@ -1,5 +1,4 @@
 import { APIEmbed } from "discord.js";
-import { generateCommandList } from "./generateCommandList";
 
 export type SubCommand = {
   title: string;
@@ -7,13 +6,17 @@ export type SubCommand = {
   reply: string | { embeds: APIEmbed[] };
 };
 
-const LEBOWSKI_GIFS = [
-  "https://i.giphy.com/media/dsRMAQaWlNWgny7nga/giphy.webp",
-  "https://media.tenor.com/J_fLDxHnwZEAAAAM/the-dude-lebowski.gif",
-  "https://media.tenor.com/CDPuQi4b_S0AAAAd/the-big-lebowski-coen-brothers.gif",
-  "https://64.media.tumblr.com/c763c578790531922b87fce7af853c82/3228a5b2fe5aa920-f4/s400x600/da687064762a7398bee8148cfd87ee4ce02688fd.gif",
-  "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
-];
+function randomLebowskiGif() {
+  const lebowskiGifs = [
+    "https://i.giphy.com/media/dsRMAQaWlNWgny7nga/giphy.webp",
+    "https://media.tenor.com/J_fLDxHnwZEAAAAM/the-dude-lebowski.gif",
+    "https://media.tenor.com/CDPuQi4b_S0AAAAd/the-big-lebowski-coen-brothers.gif",
+    "https://64.media.tumblr.com/c763c578790531922b87fce7af853c82/3228a5b2fe5aa920-f4/s400x600/da687064762a7398bee8148cfd87ee4ce02688fd.gif",
+    "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
+  ];
+
+  return lebowskiGifs[Math.floor(Math.random() * lebowskiGifs.length)];
+}
 
 export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   dvs: {
@@ -78,12 +81,12 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   "three-true-outcomes": {
     title: "three-true-outcomes",
     description: "What are the three true outcomes?",
-    reply: "1.)Home Run\n2.)Grand Slam\n3.)Walkoff",
+    reply: "1.) Home Run\n2.) Grand Slam\n3.) Walkoff",
   },
   lebowski: {
     title: "lebowski",
     description: "Get The Dude ready for his next start",
-    reply: LEBOWSKI_GIFS[Math.floor(Math.random() * LEBOWSKI_GIFS.length)],
+    reply: randomLebowskiGif(),
   },
   ostman: {
     title: "ostman",
