@@ -32,11 +32,11 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
     description: "fr?",
     reply: "fr?",
   },
-  help: {
-    title: "help",
-    description: "List commands",
-    reply: { embeds: [generateCommandList()] },
-  },
+  // help: {
+  //   title: "help",
+  //   description: "List commands",
+  //   reply: { embeds: [generateCommandList()] },
+  // },
   "m4xx-kuma": {
     title: "m4xx-kuma",
     description: "Unleash the beast",
