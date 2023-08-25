@@ -14,7 +14,9 @@ const lebowskiGifs = [
   "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
 ];
 
-const getRandomNumber = (max: number) => Math.floor(Math.random() * max);
+function getRandomNumber(max: number): number {
+  return Math.floor(Math.random() * max);
+}
 
 export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   dvs: {
