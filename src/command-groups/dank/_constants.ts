@@ -14,6 +14,8 @@ const lebowskiGifs = [
   "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
 ];
 
+const getRandomNumber = (max: number) => Math.floor(Math.random() * max);
+
 export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   dvs: {
     title: "dvs",
@@ -40,7 +42,7 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   poe: {
     title: "poe",
     description: "How many K's will Poe Scott get in his next start?",
-    reply: `Poe Scott will get... ${Math.floor(Math.random() * 28)} K's!`,
+    reply: `Poe Scott will get... ${getRandomNumber(28)} K's!`,
   },
   dvd: {
     title: "dvd",
@@ -77,7 +79,7 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   lebowski: {
     title: "lebowski",
     description: "Get The Dude ready for his next start",
-    reply: `${lebowskiGifs[Math.floor(Math.random() * lebowskiGifs.length)]}`,
+    reply: `${lebowskiGifs[getRandomNumber(lebowskiGifs.length)]}`,
   },
   ostman: {
     title: "ostman",
