@@ -6,17 +6,13 @@ export type SubCommand = {
   reply: string | { embeds: APIEmbed[] };
 };
 
-function randomLebowskiGif() {
-  const lebowskiGifs = [
-    "https://i.giphy.com/media/dsRMAQaWlNWgny7nga/giphy.webp",
-    "https://media.tenor.com/J_fLDxHnwZEAAAAM/the-dude-lebowski.gif",
-    "https://media.tenor.com/CDPuQi4b_S0AAAAd/the-big-lebowski-coen-brothers.gif",
-    "https://64.media.tumblr.com/c763c578790531922b87fce7af853c82/3228a5b2fe5aa920-f4/s400x600/da687064762a7398bee8148cfd87ee4ce02688fd.gif",
-    "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
-  ];
-
-  return lebowskiGifs[Math.floor(Math.random() * lebowskiGifs.length)];
-}
+const lebowskiGifs = [
+  "https://i.giphy.com/media/dsRMAQaWlNWgny7nga/giphy.webp",
+  "https://media.tenor.com/J_fLDxHnwZEAAAAM/the-dude-lebowski.gif",
+  "https://media.tenor.com/CDPuQi4b_S0AAAAd/the-big-lebowski-coen-brothers.gif",
+  "https://64.media.tumblr.com/c763c578790531922b87fce7af853c82/3228a5b2fe5aa920-f4/s400x600/da687064762a7398bee8148cfd87ee4ce02688fd.gif",
+  "https://i.giphy.com/media/If06XcAqynYH8QEP9S/giphy.webp",
+];
 
 export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   dvs: {
@@ -35,11 +31,6 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
     description: "fr?",
     reply: "fr?",
   },
-  // help: {
-  //   title: "help",
-  //   description: "List commands",
-  //   reply: { embeds: [generateCommandList()] },
-  // },
   "m4xx-kuma": {
     title: "m4xx-kuma",
     description: "Unleash the beast",
@@ -49,7 +40,7 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   poe: {
     title: "poe",
     description: "How many K's will Poe Scott get in his next start?",
-    reply: `Poe Scott will get... ${Math.floor(Math.random() * 28)} K's!`,
+    reply: `Poe Scott will get... ${() => Math.floor(Math.random() * 28)} K's!`,
   },
   dvd: {
     title: "dvd",
@@ -86,7 +77,8 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   lebowski: {
     title: "lebowski",
     description: "Get The Dude ready for his next start",
-    reply: randomLebowskiGif(),
+    reply: `${() =>
+      lebowskiGifs[Math.floor(Math.random() * lebowskiGifs.length)]}`,
   },
   ostman: {
     title: "ostman",
