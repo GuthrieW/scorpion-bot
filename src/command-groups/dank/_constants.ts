@@ -1,9 +1,7 @@
-import { APIEmbed } from "discord.js";
-
 export type SubCommand = {
   title: string;
   description: string;
-  reply: string | { embeds: APIEmbed[] };
+  reply: string | Function;
 };
 
 const lebowskiGifs = [
@@ -44,7 +42,7 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   poe: {
     title: "poe",
     description: "How many K's will Poe Scott get in his next start?",
-    reply: `Poe Scott will get... ${getRandomNumber(28)} K's!`,
+    reply: () => `Poe Scott will get... ${getRandomNumber(28)} K's!`,
   },
   dvd: {
     title: "dvd",
@@ -81,7 +79,7 @@ export const DANK_SUB_COMMANDS: Record<string, SubCommand> = {
   lebowski: {
     title: "lebowski",
     description: "Get The Dude ready for his next start",
-    reply: `${lebowskiGifs[getRandomNumber(lebowskiGifs.length)]}`,
+    reply: () => `${lebowskiGifs[getRandomNumber(lebowskiGifs.length)]}`,
   },
   ostman: {
     title: "ostman",

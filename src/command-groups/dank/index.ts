@@ -1,5 +1,5 @@
 import { CacheType, ChatInputCommandInteraction } from "discord.js";
-import { DANK_SUB_COMMANDS } from "./_constants";
+import { DANK_SUB_COMMANDS, SubCommand } from "./_constants";
 
 export const handleDankCommand = async (
   interaction: ChatInputCommandInteraction<CacheType>
@@ -9,7 +9,11 @@ export const handleDankCommand = async (
     (command) => command.title === subcommand
   );
   if (dankCommand) {
-    await interaction.reply(dankCommand.reply);
+    if (typeof dankCommand.reply === "string") {
+      await interaction.reply(dankCommand.reply);
+    } else {
+      await interaction.reply(dankCommand?.reply());
+    }
   }
 
   // if (subcommand === DANK_SUB_COMMANDS.dvs.title) {
